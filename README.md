@@ -9,7 +9,7 @@ https://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-s
 
 Developeurs : 
 Mathias Kulhandjian
-William Graver
+William Graver (CypressKill)
 Jules GROSPEILLER (PepperSniffer)
 
 pour deployer le site il faut 
