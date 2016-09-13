@@ -1,0 +1,3 @@
+prixy_homepage:
+    path:     /
+    defaults: { _controller: PrixyBundle:Default:index }
