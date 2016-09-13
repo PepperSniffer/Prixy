@@ -18,3 +18,9 @@ configurer le fichier parameters avec les logs de sa bdd MySQL en laissant le no
 ajouter le repertoire php en variable d'environement 
 la console est ensuite accessible via "php bin\console <options de commande>"
 "php bin\console " sans arguments sert à lister les commande que l'on peut realiser sur le site (creer les bdd, les tables, ou commandes perso )
+
+/!\ NE JAMAIS COMMITER LES DOSSIERS SUIVANT :
+(supprimer les dossier avant de commit)
+var/logs
+var/cache
+var/session 
