@@ -25,13 +25,21 @@ class details_formation
      * @var string
      *
      * @ORM\Column(name="titre", type="string", length=255, nullable=true)
-     */
+    */
     private $titre;
 
     /**
      * @ORM\OneToMany(targetEntity="ligne_competence", mappedBy="details_formation")
      */
     private $lignes_formations;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="formation",inversedBy="details_formation")
+     * @ORM\JoinColumn(name="formation_id", referencedColumnName="id")
+     */
+    private $formation;
+
 
     /**
      * Get id
@@ -106,5 +114,29 @@ class details_formation
     public function getLignesFormations()
     {
         return $this->lignes_formations;
+    }
+
+    /**
+     * Set formation
+     *
+     * @param \PrixyBundle\Entity\formation $formation
+     *
+     * @return details_formation
+     */
+    public function setFormation(\PrixyBundle\Entity\formation $formation = null)
+    {
+        $this->formation = $formation;
+    
+        return $this;
+    }
+
+    /**
+     * Get formation
+     *
+     * @return \PrixyBundle\Entity\formation
+     */
+    public function getFormation()
+    {
+        return $this->formation;
     }
 }

@@ -36,7 +36,6 @@ class ligne_competence
      */
     private $details_formation;
 
-
     /**
      * Get id
      *

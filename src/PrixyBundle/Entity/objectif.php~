@@ -30,6 +30,11 @@ class objectif
 
 
     /**
+     * @ORM\OneToMany(targetEntity="formation", mappedBy="objectif")
+     */
+    private $formation;
+
+    /**
      * Get id
      *
      * @return integer
@@ -61,5 +66,46 @@ class objectif
     public function getLibelle()
     {
         return $this->libelle;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->formation = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add formation
+     *
+     * @param \PrixyBundle\Entity\formation $formation
+     *
+     * @return objectif
+     */
+    public function addFormation(\PrixyBundle\Entity\formation $formation)
+    {
+        $this->formation[] = $formation;
+    
+        return $this;
+    }
+
+    /**
+     * Remove formation
+     *
+     * @param \PrixyBundle\Entity\formation $formation
+     */
+    public function removeFormation(\PrixyBundle\Entity\formation $formation)
+    {
+        $this->formation->removeElement($formation);
+    }
+
+    /**
+     * Get formation
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFormation()
+    {
+        return $this->formation;
     }
 }

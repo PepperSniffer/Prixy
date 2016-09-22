@@ -28,6 +28,11 @@ class certification
      */
     private $libelle;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="formation", inversedBy="certification")
+     * @ORM\JoinTable(name="formation_certification")
+     */
+    private $formation;
 
     /**
      * Get id
@@ -61,5 +66,46 @@ class certification
     public function getLibelle()
     {
         return $this->libelle;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->formation = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add formation
+     *
+     * @param \PrixyBundle\Entity\formations $formation
+     *
+     * @return certification
+     */
+    public function addFormation(\PrixyBundle\Entity\formations $formation)
+    {
+        $this->formation[] = $formation;
+    
+        return $this;
+    }
+
+    /**
+     * Remove formation
+     *
+     * @param \PrixyBundle\Entity\formations $formation
+     */
+    public function removeFormation(\PrixyBundle\Entity\formations $formation)
+    {
+        $this->formation->removeElement($formation);
+    }
+
+    /**
+     * Get formation
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFormation()
+    {
+        return $this->formation;
     }
 }
