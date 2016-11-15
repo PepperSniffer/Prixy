@@ -1,0 +1,86 @@
+﻿ref_formation,lib_theme,
+Gestion d'equipe,Informatique,
+Gestion d'equipe,Entreprise,
+Gestion d'equipe,Management,
+Les CMS,Informatique,
+Les CMS,Entreprise,
+Gestion d'equipe,Gestion,
+Les CMS,Design,
+Les CMS,Web,
+Les CMS,Projet,
+Compatibilite d'une entreprise,Comptabilite,
+Compatibilite d'une entreprise,Entreprise,
+Compatibilite d'une entreprise,Secretariat,
+Conseils Relationnels,Marketing,
+Conseils Relationnels,Management,
+Conseils Relationnels,Projet,
+Conseils Relationnels,Entreprise,
+Conseils Relationnels,Gestion,
+Production de documentation,Entreprise,
+Production de documentation,Manuel,
+Production de documentation,Developpement,
+Production de documentation,Projet,
+Gestion d'emploi du temps,Entreprise,
+Gestion d'emploi du temps,Gestion,
+Gestion d'emploi du temps,Projet,
+Gestion d'emploi du temps,Management,
+Les Frameworks JavaScript,Informatique,
+Les Frameworks JavaScript,Entreprise,
+Les Frameworks JavaScript,Developpement,
+Les Frameworks JavaScript,Design,
+Les Frameworks JavaScript,Web,
+Les Frameworks PHP,Web,ref_formation
+Les Frameworks PHP,Design,Gestion d'equipe
+Les Frameworks PHP,Developpement,Les CMS
+Les Frameworks PHP,Entreprise,Compatibilite d'une entreprise
+Les Frameworks PHP,Informatique,Conseils Relationnels
+Les bases HTML,Web,Production de documentation
+Les bases HTML,Design,Gestion d'emploi du temps
+Les bases HTML,Developpement,Les Frameworks JavaScript
+Les bases HTML,Entreprise,Les Frameworks PHP
+Les bases HTML,Informatique,Les bases HTML
+Styliser d'un site web,Web,Styliser d'un site web
+Styliser d'un site web,Design,Apprendre à cuisiner des pates
+Styliser d'un site web,Developpement,Apprendre la couture
+Styliser d'un site web,Entreprise,Apprendre le jardinage 
+Styliser d'un site web,Informatique,Formation Montage Video
+Apprendre à cuisiner des pates,Manuel,Formation pour Formateurs
+Apprendre à cuisiner des pates,Gestion,Paint
+Apprendre le jardinage ,Jardinage,Photoshop
+Apprendre la couture,Manuel,C#
+Apprendre la couture,Gestion,WebDesign
+Formation Montage Video,Logistique,Gestion de Projet
+Formation Montage Video,Edition,
+Formation Montage Video,Projet,
+Formation Montage Video,Marketing,
+Formation pour Formateurs,Entreprise,
+Formation pour Formateurs,Gestion,
+Formation pour Formateurs,Marketing,
+Formation pour Formateurs,Management,
+Formation pour Formateurs,Logistique,
+Photoshop,Design,
+Photoshop,Web,
+Photoshop,Edition,
+Photoshop,Logistique,
+Photoshop,Projet,
+Photoshop,Informatique,
+C#,Web,
+C#,Design,
+C#,Developpement,
+C#,Entreprise,
+C#,Informatique,
+WebDesign,Web,
+WebDesign,Design,
+WebDesign,Developpement,
+WebDesign,Entreprise,
+WebDesign,Informatique,
+Gestion de Projet,Gestion,
+Gestion de Projet,Comptabilite,
+Gestion de Projet,Projet,
+Gestion de Projet,Secretariat,
+Gestion de Projet,Stratégie et pilotage des établissements,
+Gestion de Projet,Fiscalité,
+Gestion de Projet,Droit,
+Gestion de Projet,Marketing,
+Gestion de Projet,Management,
+Gestion de Projet,Logistique,

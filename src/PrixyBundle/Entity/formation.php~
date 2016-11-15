@@ -21,6 +21,14 @@ class formation
      */
     private $id;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ref", type="string", nullable=false)
+     */
+    private $ref;
+
     /**
      * @var int
      *

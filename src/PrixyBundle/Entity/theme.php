@@ -78,11 +78,11 @@ class theme
     /**
      * Add formation
      *
-     * @param \PrixyBundle\Entity\formations $formation
+     * @param \PrixyBundle\Entity\formation $formation
      *
      * @return theme
      */
-    public function addFormation(\PrixyBundle\Entity\formations $formation)
+    public function addFormation(\PrixyBundle\Entity\formation $formation)
     {
         $this->formation[] = $formation;
     
@@ -92,9 +92,9 @@ class theme
     /**
      * Remove formation
      *
-     * @param \PrixyBundle\Entity\formations $formation
+     * @param \PrixyBundle\Entity\formation $formation
      */
-    public function removeFormation(\PrixyBundle\Entity\formations $formation)
+    public function removeFormation(\PrixyBundle\Entity\formation $formation)
     {
         $this->formation->removeElement($formation);
     }

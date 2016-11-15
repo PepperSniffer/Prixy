@@ -24,3 +24,9 @@ la console est ensuite accessible via "php bin\console <options de commande>"
 var/logs
 var/cache
 var/session 
+
+
+pour que le deployement soit effectif il faut executer ces commandes dans l'ordre :
+php bin/console doctrine:database:create //creer la DDB
+php bin/console doctrine:schema:create //cree les tables selons les entités que l'on a créé
+php bin/console *commande qui regroupe tous les imports des jeux d'essais* //imports des jeux d'essais

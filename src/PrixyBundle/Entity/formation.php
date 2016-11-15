@@ -21,6 +21,14 @@ class formation
      */
     private $id;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ref", type="string", nullable=false)
+     */
+    private $ref;
+
     /**
      * @var int
      *
@@ -364,5 +372,29 @@ class formation
     public function getEstRequisPour()
     {
         return $this->estRequisPour;
+    }
+
+    /**
+     * Set ref
+     *
+     * @param string $ref
+     *
+     * @return formation
+     */
+    public function setRef($ref)
+    {
+        $this->ref = $ref;
+    
+        return $this;
+    }
+
+    /**
+     * Get ref
+     *
+     * @return string
+     */
+    public function getRef()
+    {
+        return $this->ref;
     }
 }
