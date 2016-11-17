@@ -1,6 +1,9 @@
 Prixy
 =====
 
+
+![Prixy](://img/logo.png)</a>
+
 A Symfony project created on September 8, 2016, 9:31 pm.
 Prixy Groupe G BTS SIO 2e année
 
