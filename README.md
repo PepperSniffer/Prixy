@@ -4,13 +4,13 @@ Prixy
 A Symfony project created on September 8, 2016, 9:31 pm.
 Prixy Groupe G BTS SIO 2e année
 
-tuto openclassroom symfony 2.8 :
-https://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-symfony
+tuto openclassroom symfony 2.8 :<br/>
+https://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-symfony<br/><br/>
 
-Developeurs : 
-Mathias Kulhandjian
-William Graver (CypressKill)
-Jules GROSPEILLER (PepperSniffer)
+Developeurs : <br/>
+Mathias Kulhandjian<br/>
+William Graver (CypressKill)<br/>
+Jules GROSPEILLER (PepperSniffer)<br/>
 
 pour deployer le site il faut 
 creer un alias sous apache et le configurer avec comme dossier de base "web/" 
@@ -19,13 +19,14 @@ ajouter le repertoire php en variable d'environement
 la console est ensuite accessible via "php bin\console <options de commande>"
 "php bin\console " sans arguments sert à lister les commande que l'on peut realiser sur le site (creer les bdd, les tables, ou commandes perso )
 
-/!\ NE JAMAIS COMMITER LES DOSSIERS SUIVANT :
+/!\ NE JAMAIS COMMITER LES DOSSIERS SUIVANT : <br/>
 (supprimer les dossier avant de commit)
 var/logs
 var/cache
 var/session 
+<br/>
 
-Tuto installation Symfony :
+Tuto installation Symfony :<br/> 
 -1 cloner le dépot git où vous voulez. <br/>
 -2 Copier le dossier Prixy téléchargé. <br/>
 -3 Déplacez le dans le dosssier de Wamp( théoriquement C:\wamp\apps\ ) <br/>
