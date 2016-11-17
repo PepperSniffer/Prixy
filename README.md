@@ -25,11 +25,13 @@ var/logs
 var/cache
 var/session 
 
-Tuto installation Symfony : 
--1 cloner le dépot git où vous voulez.
--2 Copier le dossier Prixy téléchargé.
--3 Déplacez le dans le dosssier de Wamp( théoriquement C:\wamp\apps\ )
--4 Copiez le fichier "prixy.conf" présent à la racine de Prixy
--4 Revenez à la racine de wamp et accédez a wamp/alias
--5 Collez ici "prixy.conf" 
--6 Dans le dossier de Prixy, faites clic-droit, et ouvrez un invite de commande, puis entrez deploy.bat 
+Tuto installation Symfony :
+-1 cloner le dépot git où vous voulez. <br/>
+-2 Copier le dossier Prixy téléchargé. <br/>
+-3 Déplacez le dans le dosssier de Wamp( théoriquement C:\wamp\apps\ ) <br/>
+-4 Copiez le fichier "prixy.conf" présent à la racine de Prixy <br/>
+-5 Revenez à la racine de wamp et accédez a wamp/alias<br/>
+-6 Collez ici "prixy.conf" <br/>
+-7 Dans le dossier de Prixy, faites clic-droit, et ouvrez un invite de commande, puis entrez deploy.bat  <br/>
+-8 Enfin allez dans le panneau de configuration de windows > Système et sécurité > Système <br/>
+-9 Ici dans le menu de gauche cliquez sur Propriétés Système > Variable d'environnement, trouvez "Path", cliquez sur "modifier", dans "Valeur de la variable" ajoutez ";C:\wamp\bin\php\php5.5.12" si wamp est sur l'emplacement par default, sinon indiquez l'emplacement <br/>
