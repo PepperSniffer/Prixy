@@ -10,7 +10,6 @@ php bin/console importObjectif
 php bin/console importSessionsFormation
 php bin/console importTheme
 php bin/console importNecessiter
---g
 php bin/console assets:install --symlink
 php bin/console cache:clear
 php bin/console cache:clear --env=prod
