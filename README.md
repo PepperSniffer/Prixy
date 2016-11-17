@@ -25,8 +25,11 @@ var/logs
 var/cache
 var/session 
 
-
-pour que le deployement soit effectif il faut executer ces commandes dans l'ordre :
-php bin/console doctrine:database:create //creer la DDB
-php bin/console doctrine:schema:create //cree les tables selons les entités que l'on a créé
-php bin/console *commande qui regroupe tous les imports des jeux d'essais* //imports des jeux d'essais
+Tuto installation Symfony : 
+-1 cloner le dépot git où vous voulez.
+-2 Copier le dossier Prixy téléchargé.
+-3 Déplacez le dans le dosssier de Wamp( théoriquement C:\wamp\apps\ )
+-4 Copiez le fichier "prixy.conf" présent à la racine de Prixy
+-4 Revenez à la racine de wamp et accédez a wamp/alias
+-5 Collez ici "prixy.conf" 
+-6 Dans le dossier de Prixy, faites clic-droit, et ouvrez un invite de commande, puis entrez deploy.bat 

@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('PrixyBundle:Default:index.html.twig');
+        return $this->render('PrixyBundle:Resources:index.html.twig');
     }
 }
