@@ -205,3 +205,171 @@ label[for="chkcertif"]:hover + label[for="chkcertif"]::before{
   color: white; 
   background: black;
 }
+
+/* **********************************************************************************************
+*************************************PARTIE WILLIAM***********************************************
+********************************************************************************************** */
+
+
+body{
+  height:100%;
+  width:100%;
+  position: absolute;
+  overflow-x:hidden;
+}
+
+#Wallpaper_display{
+  width: 100%;
+  min-height: 700px;
+  position: relative;
+  background : url("/prixy/bundles/prixy/media/Background/hand.png") no-repeat center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  filter : blur(1px);
+  filter : contrast(120%);
+  filter: opacity(75%);
+  box-shadow: 0 0 25px 10px #003D9F;
+  margin-bottom: 20px;
+}
+#nom_logo{
+
+  font-size: 6.5em;
+}
+#sous_logo{
+  font-size:1.5em;
+}
+.wallpaper_content{
+  position: absolute;
+  left: 47%;
+  top: 12%;
+}
+@media (max-width:476px ){
+	.wallpaper_content{
+		left:36%;
+	}
+}
+
+p{
+  margin : 10px !important;
+}
+.box_black{
+  box-shadow: 0 0 25px 10px black
+}
+.img-thumbnail{
+  background-color: #003D9F !important;
+}
+#nom_logo:first-letter{
+  color: #003D9F;
+  transition: all 0.5s ease-in-out;
+  font-size: 1.3em;
+}
+.img_personnel{
+  width:150px !important;
+  height:150px !important;
+}
+
+.position_profil{
+    left:26%;
+    position:relative;
+    width:150px;
+}
+
+.position_profil figcaption{
+ opacity: 0;
+ background-color: #000018;
+ position:absolute;
+ bottom:0%;
+ right:0;
+ left:0;
+ top:100%;
+ filter : opacity(85%);
+ border-radius: 50%;
+ text-align: center;
+ transition: all .20s ease-in-out ;
+}
+.position_profil:hover figcaption{
+  opacity: 1; 
+  top:0%;
+}
+figcaption span{
+  color: #DDD;
+  position: relative;
+  top: 60px;
+}
+@media (max-width: 992px){
+	.position_profil{
+		left:36%;
+	}
+}
+/* **********************************************************************************************
+****************************PARTIE WILLIAM FORMATION***********************************************
+********************************************************************************************** */
+.titre_forma{
+  text-align: center;
+  color : #003D9F;
+}
+
+div  h3:first-letter{
+  color: #003D9F;
+  font-size: 1.5em;
+}
+.right_position{
+  margin-top:20px;
+
+}
+.without_style{
+  list-style:none;
+  margin-left:0;
+  padding-left:0;
+}
+@media (min-width: 767px) {
+  .left_position{
+  border-right: solid #003D9F;
+  -webkit-border-image: 
+    -webkit-gradient(linear, 0 0, 0 100%, from(#003D9F), to(rgba(0, 0, 0, 0))) 1 100%;
+  -webkit-border-image: 
+    -webkit-linear-gradient(#003D9F, rgba(0, 0, 0, 0)) 1 100%;
+  -moz-border-image:
+    -moz-linear-gradient(#003D9F, rgba(0, 0, 0, 0)) 1 100%;    
+  -o-border-image:
+    -o-linear-gradient(#003D9F, rgba(0, 0, 0, 0)) 1 100%;
+  border-image:
+      linear-gradient(to bottom, #003D9F, rgba(0, 0, 0, 0)) 1 100%;
+  }
+}
+@media (max-width: 767px) {
+  .left_position{
+  border-left: solid #003D9F;
+  -webkit-border-image: 
+    -webkit-gradient(linear, 0 0, 0 100%, from(#003D9F), to(rgba(0, 0, 0, 0))) 1 100%;
+  -webkit-border-image: 
+    -webkit-linear-gradient(#003D9F, rgba(0, 0, 0, 0)) 1 100%;
+  -moz-border-image:
+    -moz-linear-gradient(#003D9F, rgba(0, 0, 0, 0)) 1 100%;    
+  -o-border-image:
+    -o-linear-gradient(#003D9F, rgba(0, 0, 0, 0)) 1 100%;
+  border-image:
+      linear-gradient(to bottom, #003D9F, rgba(0, 0, 0, 0)) 1 100%;
+  }
+  .right_position{
+    border-left: solid;
+    -webkit-border-image: 
+      -webkit-gradient(linear, 0 100%, 0 0, from(#003D9F), to(rgba(0, 0, 0, 0))) 1 100%;
+    -webkit-border-image: 
+      -webkit-linear-gradient(bottom, #003D9F, rgba(0, 0, 0, 0)) 1 100%;
+    -moz-border-image:
+      -moz-linear-gradient(bottom, #003D9F, rgba(0, 0, 0, 0)) 1 100%;  
+    -o-border-image:
+      -o-linear-gradient(bottom, #003D9F, rgba(0, 0, 0, 0)) 1 100%;
+    border-image:
+      linear-gradient(to top, #003D9F, rgba(0, 0, 0, 0)) 1 100%;
+  }
+}
+.session_formation{
+  margin-top: 30px;
+  
+}
+
+

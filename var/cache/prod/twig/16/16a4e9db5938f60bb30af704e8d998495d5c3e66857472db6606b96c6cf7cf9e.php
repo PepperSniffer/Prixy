@@ -8,7 +8,7 @@ class __TwigTemplate_cff81ae26ff76c903e383de68f7126f0d32f04dc943b98ea0818fadd9e1
         parent::__construct($env);
 
         // line 1
-        $this->parent = $this->loadTemplate("PrixyBundle:Resources:layout.html.twig", "@Prixy/Default/contact.html.twig", 1);
+        $this->parent = $this->loadTemplate("PrixyBundle:Default:layout.html.twig", "@Prixy/Default/contact.html.twig", 1);
         $this->blocks = array(
             'content' => array($this, 'block_content'),
         );
@@ -16,7 +16,7 @@ class __TwigTemplate_cff81ae26ff76c903e383de68f7126f0d32f04dc943b98ea0818fadd9e1
 
     protected function doGetParent(array $context)
     {
-        return "PrixyBundle:Resources:layout.html.twig";
+        return "PrixyBundle:Default:layout.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
@@ -106,7 +106,7 @@ class __TwigTemplate_cff81ae26ff76c903e383de68f7126f0d32f04dc943b98ea0818fadd9e1
         return array (  31 => 3,  28 => 2,  11 => 1,);
     }
 }
-/* {% extends 'PrixyBundle:Resources:layout.html.twig' %}*/
+/* {% extends 'PrixyBundle:Default:layout.html.twig' %}*/
 /* {% block content %}*/
 /*     <div class="row">*/
 /*         <div class="col-md-8">*/

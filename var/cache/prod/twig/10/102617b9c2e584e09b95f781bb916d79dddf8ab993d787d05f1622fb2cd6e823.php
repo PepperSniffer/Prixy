@@ -8,7 +8,7 @@ class __TwigTemplate_9cfef3d09578462cadb45ef467fd412143b4080a2c338fd5b330700d423
         parent::__construct($env);
 
         // line 1
-        $this->parent = $this->loadTemplate("PrixyBundle:Resources:layout.html.twig", "@Prixy/Default/formation.html.twig", 1);
+        $this->parent = $this->loadTemplate("PrixyBundle:Default:layout.html.twig", "@Prixy/Default/formation.html.twig", 1);
         $this->blocks = array(
             'content' => array($this, 'block_content'),
         );
@@ -16,7 +16,7 @@ class __TwigTemplate_9cfef3d09578462cadb45ef467fd412143b4080a2c338fd5b330700d423
 
     protected function doGetParent(array $context)
     {
-        return "PrixyBundle:Resources:layout.html.twig";
+        return "PrixyBundle:Default:layout.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
@@ -166,7 +166,7 @@ class __TwigTemplate_9cfef3d09578462cadb45ef467fd412143b4080a2c338fd5b330700d423
         return array (  31 => 3,  28 => 2,  11 => 1,);
     }
 }
-/* {% extends 'PrixyBundle:Resources:layout.html.twig' %}*/
+/* {% extends 'PrixyBundle:Default:layout.html.twig' %}*/
 /* {% block content %}*/
 /*     <div id="divRecherche">*/
 /*         <h4>Paramètres</h4>*/

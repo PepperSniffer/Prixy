@@ -8,7 +8,7 @@ class __TwigTemplate_5f8a28d17eaecca3240eee62d3ff566cee3a43d69e4412350f53468eb13
         parent::__construct($env);
 
         // line 1
-        $this->parent = $this->loadTemplate("PrixyBundle:Resources:layout.html.twig", "PrixyBundle:Default:index.html.twig", 1);
+        $this->parent = $this->loadTemplate("PrixyBundle:Default:layout.html.twig", "PrixyBundle:Default:index.html.twig", 1);
         $this->blocks = array(
             'content' => array($this, 'block_content'),
         );
@@ -16,7 +16,7 @@ class __TwigTemplate_5f8a28d17eaecca3240eee62d3ff566cee3a43d69e4412350f53468eb13
 
     protected function doGetParent(array $context)
     {
-        return "PrixyBundle:Resources:layout.html.twig";
+        return "PrixyBundle:Default:layout.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
@@ -53,7 +53,10 @@ class __TwigTemplate_5f8a28d17eaecca3240eee62d3ff566cee3a43d69e4412350f53468eb13
         <div class=\"col-md-4\">
             <div class=\"position_profil\">
                 <figure>
-                    <img class=\"img-circle img-thumbnail img_personnel\" src=\"media/Portrait/millot.png\">
+                    <img class=\"img-circle img-thumbnail img_personnel\" src=\"";
+        // line 28
+        echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("bundles/prixy/media/Portrait/millot.png"), "html", null, true);
+        echo "\">
                     <figcaption>
                         <span>S.Millot</span>
                     </figcaption>
@@ -63,7 +66,10 @@ class __TwigTemplate_5f8a28d17eaecca3240eee62d3ff566cee3a43d69e4412350f53468eb13
         <div class=\"col-md-4\">
             <div class=\"position_profil\">
                 <figure>
-                    <img class=\"img-circle img-thumbnail img_personnel\" src=\"media/Portrait/schmitt.png\">
+                    <img class=\"img-circle img-thumbnail img_personnel\" src=\"";
+        // line 38
+        echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("bundles/prixy/media/Portrait/schmitt.png"), "html", null, true);
+        echo "\">
                     <figcaption>
                         <span>L.Schmitt</span>
                     </figcaption>
@@ -73,7 +79,10 @@ class __TwigTemplate_5f8a28d17eaecca3240eee62d3ff566cee3a43d69e4412350f53468eb13
         <div class=\"col-md-4\">
             <div class=\"position_profil\">
                 <figure>
-                    <img class=\"img-circle img-thumbnail img_personnel\" src=\"media/Portrait/joubert.png\" >
+                    <img class=\"img-circle img-thumbnail img_personnel\" src=\"";
+        // line 48
+        echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("bundles/prixy/media/Portrait/joubert.png"), "html", null, true);
+        echo "\" >
                     <figcaption>
                         <span>C.Joubert</span>
                     </figcaption>
@@ -101,10 +110,10 @@ class __TwigTemplate_5f8a28d17eaecca3240eee62d3ff566cee3a43d69e4412350f53468eb13
 
     public function getDebugInfo()
     {
-        return array (  31 => 3,  28 => 2,  11 => 1,);
+        return array (  84 => 48,  71 => 38,  58 => 28,  31 => 3,  28 => 2,  11 => 1,);
     }
 }
-/* {% extends 'PrixyBundle:Resources:layout.html.twig' %}*/
+/* {% extends 'PrixyBundle:Default:layout.html.twig' %}*/
 /* {% block content %}*/
 /* */
 /*     <div class="row">*/
@@ -131,7 +140,7 @@ class __TwigTemplate_5f8a28d17eaecca3240eee62d3ff566cee3a43d69e4412350f53468eb13
 /*         <div class="col-md-4">*/
 /*             <div class="position_profil">*/
 /*                 <figure>*/
-/*                     <img class="img-circle img-thumbnail img_personnel" src="media/Portrait/millot.png">*/
+/*                     <img class="img-circle img-thumbnail img_personnel" src="{{asset('bundles/prixy/media/Portrait/millot.png')}}">*/
 /*                     <figcaption>*/
 /*                         <span>S.Millot</span>*/
 /*                     </figcaption>*/
@@ -141,7 +150,7 @@ class __TwigTemplate_5f8a28d17eaecca3240eee62d3ff566cee3a43d69e4412350f53468eb13
 /*         <div class="col-md-4">*/
 /*             <div class="position_profil">*/
 /*                 <figure>*/
-/*                     <img class="img-circle img-thumbnail img_personnel" src="media/Portrait/schmitt.png">*/
+/*                     <img class="img-circle img-thumbnail img_personnel" src="{{asset('bundles/prixy/media/Portrait/schmitt.png')}}">*/
 /*                     <figcaption>*/
 /*                         <span>L.Schmitt</span>*/
 /*                     </figcaption>*/
@@ -151,7 +160,7 @@ class __TwigTemplate_5f8a28d17eaecca3240eee62d3ff566cee3a43d69e4412350f53468eb13
 /*         <div class="col-md-4">*/
 /*             <div class="position_profil">*/
 /*                 <figure>*/
-/*                     <img class="img-circle img-thumbnail img_personnel" src="media/Portrait/joubert.png" >*/
+/*                     <img class="img-circle img-thumbnail img_personnel" src="{{asset('bundles/prixy/media/Portrait/joubert.png')}}" >*/
 /*                     <figcaption>*/
 /*                         <span>C.Joubert</span>*/
 /*                     </figcaption>*/
