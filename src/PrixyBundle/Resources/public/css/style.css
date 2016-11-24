@@ -70,6 +70,8 @@ div#content{
   background: #eee;
   border-radius: 5px;
   overflow: hidden;
+  margin-bottom:100px;
+  padding-bottom:10px;
 }
 span.sent{
   display:none;
@@ -114,6 +116,9 @@ fieldset{
 }
 input[type="submit"],input[type="reset"]{
   transition: all 0.2s ease-in-out;
+}
+input[type="submit"]{
+  float:right;
 }
 input[type="submit"]:hover{
   box-shadow: 0 0 10px 2px #003D9F inset ;
@@ -206,9 +211,9 @@ label[for="chkcertif"]:hover + label[for="chkcertif"]::before{
   background: black;
 }
 
-/* **********************************************************************************************
+/*************************************************************************************************
 *************************************PARTIE WILLIAM***********************************************
-********************************************************************************************** */
+*************************************************************************************************/
 
 
 body{
@@ -222,7 +227,7 @@ body{
   width: 100%;
   min-height: 700px;
   position: relative;
-  background : url("/prixy/bundles/prixy/media/Background/hand.png") no-repeat center;
+  background : url("../media/Background/hand.png") no-repeat center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -234,11 +239,12 @@ body{
   margin-bottom: 20px;
 }
 #nom_logo{
-
   font-size: 6.5em;
+  margin-bottom:0;
 }
 #sous_logo{
   font-size:1.5em;
+  margin-left:-20px;
 }
 .wallpaper_content{
   position: absolute;
@@ -303,9 +309,9 @@ figcaption span{
 		left:36%;
 	}
 }
-/* **********************************************************************************************
+/**************************************************************************************************
 ****************************PARTIE WILLIAM FORMATION***********************************************
-********************************************************************************************** */
+**************************************************************************************************/
 .titre_forma{
   text-align: center;
   color : #003D9F;
@@ -366,10 +372,26 @@ div  h3:first-letter{
     border-image:
       linear-gradient(to top, #003D9F, rgba(0, 0, 0, 0)) 1 100%;
   }
+  #map{
+	display:none;
+  }
 }
 .session_formation{
   margin-top: 30px;
   
 }
-
-
+textarea{
+	resize:none;
+}
+#map{
+	width:100% !important;
+	margin-left:none;
+	margin-top:10px;
+}
+h4:first-letter{
+	color: #003D9F;
+}
+#map{
+	height:400px;
+	width:100%;
+}

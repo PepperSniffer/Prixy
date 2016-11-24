@@ -14,16 +14,14 @@ class DefaultController extends Controller
     {
         return $this->render('PrixyBundle:Default:contact.html.twig') ;
     }
-    public function formationAction()
+    public function formationsAction()
     {
         return $this->render('PrixyBundle:Default:formation.html.twig');
     }
-    public function formation_details()
+    public function formationAction($id)
     {
-        return $this->render('PrixyBundle:Default:formation_details.html.twig');
-    }
-    public function layoutAction()
-    {
-        return $this->render('PrixyBundle:Default:layout.html.twig');
+        $dm = $this->getContainer()->get('doctrine')->getManager();
+        $formation = $certification = $dm->getRepository('PrixyBundle:formation')->findOneById($id);
+        return $this->render('PrixyBundle:Default:formation_details.html.twig', array('formation' => $formation));
     }
 }
