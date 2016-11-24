@@ -27,4 +27,3 @@ class DefaultController extends Controller
         return $this->render('PrixyBundle:Resources:layout.html.twig');
     }
 }
-s
