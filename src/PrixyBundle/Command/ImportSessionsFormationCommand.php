@@ -82,7 +82,7 @@ class ImportSessionsFormationCommand extends ContainerAwareCommand
 
                 
                 if ($formation && $session_formation) {
-                    $formation->setSessionFormation($session_formation);
+                    $formation->addSessionFormation($session_formation);
                     $session_formation->addFormation($formation);
 
                     $dm->persist($session_formation);

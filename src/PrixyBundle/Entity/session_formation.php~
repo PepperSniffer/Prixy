@@ -30,7 +30,7 @@ class session_formation
 
 
     /**
-     * @ORM\OneToMany(targetEntity="formation", mappedBy="session_formation")
+     * @ORM\ManyToMany(targetEntity="formation", mappedBy="session_formation")
      */
     private $formation;
 

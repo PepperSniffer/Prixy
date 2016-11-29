@@ -63,8 +63,11 @@ class formation
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="session_formation", inversedBy="formation")
-     * @ORM\JoinColumn(name="session_formation_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="session_formation", inversedBy="formation")
+     * @ORM\JoinTable(name="effectuer",
+     *      joinColumns={@ORM\JoinColumn(name="formation_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="session_formation_id", referencedColumnName="id")}
+     *      )
      */
     private $session_formation;
 
@@ -396,5 +399,29 @@ class formation
     public function getRef()
     {
         return $this->ref;
+    }
+
+    /**
+     * Add sessionFormation
+     *
+     * @param \PrixyBundle\Entity\session_formation $sessionFormation
+     *
+     * @return formation
+     */
+    public function addSessionFormation(\PrixyBundle\Entity\session_formation $sessionFormation)
+    {
+        $this->session_formation[] = $sessionFormation;
+    
+        return $this;
+    }
+
+    /**
+     * Remove sessionFormation
+     *
+     * @param \PrixyBundle\Entity\session_formation $sessionFormation
+     */
+    public function removeSessionFormation(\PrixyBundle\Entity\session_formation $sessionFormation)
+    {
+        $this->session_formation->removeElement($sessionFormation);
     }
 }

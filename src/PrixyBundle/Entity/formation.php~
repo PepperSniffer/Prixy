@@ -63,8 +63,11 @@ class formation
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="session_formation", inversedBy="formation")
-     * @ORM\JoinColumn(name="session_formation_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="session_formation", inversedBy="formation")
+     * @ORM\JoinTable(name="effectuer",
+     *      joinColumns={@ORM\JoinColumn(name="formation_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="session_formation_id", referencedColumnName="id")}
+     *      )
      */
     private $session_formation;
 
@@ -372,5 +375,29 @@ class formation
     public function getEstRequisPour()
     {
         return $this->estRequisPour;
+    }
+
+    /**
+     * Set ref
+     *
+     * @param string $ref
+     *
+     * @return formation
+     */
+    public function setRef($ref)
+    {
+        $this->ref = $ref;
+    
+        return $this;
+    }
+
+    /**
+     * Get ref
+     *
+     * @return string
+     */
+    public function getRef()
+    {
+        return $this->ref;
     }
 }
