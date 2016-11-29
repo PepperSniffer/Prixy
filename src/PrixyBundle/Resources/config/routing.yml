@@ -1,3 +1,15 @@
 prixy_homepage:
     path:     /
     defaults: { _controller: PrixyBundle:Default:index }
+
+prixy_formations:
+    path:     /formations/
+    defaults: { _controller: PrixyBundle:Default:formations }
+
+prixy_contact:
+    path:     /contact/
+    defaults: { _controller: PrixyBundle:Default:contact }
+
+prixy_formation:
+    path:     /formation/{id}/
+    defaults: { _controller: PrixyBundle:Default:formation }
