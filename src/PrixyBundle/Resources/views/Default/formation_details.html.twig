@@ -9,40 +9,42 @@
         <div class="col-sm-8 left_position">
             <div class="objectifs_formation">
                 <h3> OBJECTIFS DE LA FORMATION</h3>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                <p> {{ objectif.libelle }} </p>
             </div>
             <div class="pre_requis">
                 <h3> PRE-REQUIS </h3>
-                <ul><li> Formation Requise</li> </ul>
+                <ul>
+                    {% for formation in formationRequired %}
+                        <li>{{ formation. }}</li>
+                    {% endblock %}
+                </ul>
             </div>
             <div class="programme_details">
                 <h3> PROGRAMME DETAILE </h3>
-                <p> Details formation : </br>
-                    ligne_detail_1 </br>
-                    ligne_detail_2 </br>
-                    ligne_detail_3 </br>
-                    ligne_detail_4 </br> </p>
+                <h5> Details formation</h5>
+                <ul>
+                    {% for listCompetence in lineCompetences %}
+                        <li>{{ listCompetence.libelle }}</li>
+                        <p>
+                            {{ details_formation }}
+                        </p>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
         <div class="col-sm-4 right_position">
             <div class="info_forma">
                 <ul class ="without_style">
-                    <li>Durée : 21354j</li>
-                    <li>Tarif : 999€ HT</li>
-                    <li>Certification </br> Yes / No </li>
+                    <li>Durée : {{ formation.duree }}</li>
+                    <li>Tarif : {{ formation.tarif }}</li>
+                    <li>Certification: {{ certification.getFormation() }} </li>
                 </ul>
             </div>
             <div class ="session_formation">
                 <ul class="without_style">
-                    <li> Date 1 </li>
-                    <li> Date 2 </li>
-                    <li> Date 3 </li>
-                    <li> Date 4 </li>
+                    {% for ListDate in  %}
+                        <li> {{ sessionFormation.date }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
