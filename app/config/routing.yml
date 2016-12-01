@@ -1,7 +1,6 @@
 prixy:
     resource: "@PrixyBundle/Resources/config/routing.yml"
     prefix:   /
-
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

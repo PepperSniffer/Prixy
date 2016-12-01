@@ -3,25 +3,42 @@
 namespace PrixyBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+//use Symfony\Component\Routing\Route;
+
 
 class DefaultController extends Controller
 {
+
+    /**
+    * @Route("/", name="prixy_homepage")
+    */
     public function indexAction()
     {
         return $this->render('PrixyBundle:Default:index.html.twig');
     }
+
+    /**
+    * @Route("/contact/", name="prixy_contact")
+    */
     public function contactAction()
     {
         return $this->render('PrixyBundle:Default:contact.html.twig') ;
     }
+
+    /**
+    * @Route("/formations/", name="prixy_formations")
+    */
     public function formationsAction()
     {
         return $this->render('PrixyBundle:Default:formation.html.twig');
     }
 
     /**
-     * @param $id
-     */
+    * @param $id
+    *
+    * @Route("/formaton/{id}", name="prixy_formation_details")
+    */
     public function formationAction($id)
     {
         $dm = $this->getContainer()->get('doctrine')->getManager();
