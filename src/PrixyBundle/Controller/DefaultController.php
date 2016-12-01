@@ -52,7 +52,8 @@ class DefaultController extends Controller
                                                                                        'session_formation' => $session_formation,
                                                                                         'objectif' => $objectif,
                                                                                         'details_formation'=> $details_formation,
-                                                                                        'ligne_formation'=> $ligne_formation
+                                                                                        'ligne_formation'=> $ligne_formation,
+                                                                                        'requires'=>$requires
                                                                                         ));
     }
 }

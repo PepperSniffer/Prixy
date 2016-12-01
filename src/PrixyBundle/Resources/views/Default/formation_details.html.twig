@@ -14,20 +14,26 @@
             <div class="pre_requis">
                 <h3> PRE-REQUIS </h3>
                 <ul>
-                    {% for formation in formationRequired %}
-                        <li>{{ formation. }}</li>
-                    {% endblock %}
+                    {% if %}
+                        {% for formation in requires %}
+                            <li>{{ formation.ref }}</li>
+                        {% endblock %}
+                    {% endif %}
                 </ul>
             </div>
             <div class="programme_details">
                 <h3> PROGRAMME DETAILE </h3>
                 <h5> Details formation</h5>
                 <ul>
-                    {% for listCompetence in lineCompetences %}
+                    {% for details in details_formation %}
                         <li>{{ listCompetence.libelle }}</li>
                         <p>
+                            {% for ligne in ligne_formation %}
                             {{ details_formation }}
+                            {% endblock %} }}
                         </p>
+                    {% else %}
+                        <li>Pas de details sur la formation</li>
                     {% endfor %}
                 </ul>
             </div>
@@ -37,7 +43,10 @@
                 <ul class ="without_style">
                     <li>Durée : {{ formation.duree }}</li>
                     <li>Tarif : {{ formation.tarif }}</li>
-                    <li>Certification: {{ certification.getFormation() }} </li>
+                    <li>Certification:{% for formation in requires %}
+                                         formation.
+                                       {% endfor %}
+                    </li>
                 </ul>
             </div>
             <div class ="session_formation">
