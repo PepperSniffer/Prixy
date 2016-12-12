@@ -2,12 +2,7 @@
 Thumbs.db
 ehthumbs.db
 
-# Folder config file
-Desktop.ini
-var/
-vendor/
-bin/
-web/
+
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
