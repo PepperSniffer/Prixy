@@ -227,7 +227,7 @@ body{
   width: 100%;
   min-height: 700px;
   position: relative;
-  background : url("../media/Background/hand.png") no-repeat center;
+  background : url("/prixy/bundles/prixy/media/Background/hand.png") no-repeat center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

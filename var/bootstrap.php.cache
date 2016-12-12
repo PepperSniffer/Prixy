@@ -1006,7 +1006,19 @@ return $this->getMethod() === strtoupper($method);
 }
 public function isMethodSafe()
 {
+if (!func_num_args() || func_get_arg(0)) {
+@trigger_error('Checking only for cacheable HTTP methods with Symfony\Component\HttpFoundation\Request::isMethodSafe() is deprecated since version 3.2 and will throw an exception in 4.0. Disable checking only for cacheable methods by calling the method with `false` as first argument or use the Request::isMethodCacheable() instead.', E_USER_DEPRECATED);
+return in_array($this->getMethod(), array('GET','HEAD'));
+}
 return in_array($this->getMethod(), array('GET','HEAD','OPTIONS','TRACE'));
+}
+public function isMethodIdempotent()
+{
+return in_array($this->getMethod(), array('HEAD','GET','PUT','DELETE','TRACE','OPTIONS','PURGE'));
+}
+public function isMethodCacheable()
+{
+return in_array($this->getMethod(), array('GET','HEAD'));
 }
 public function getContent($asResource = false)
 {
@@ -1385,12 +1397,35 @@ public static $statusTexts = array(
 504 =>'Gateway Timeout',
 505 =>'HTTP Version Not Supported',
 506 =>'Variant Also Negotiates (Experimental)', 507 =>'Insufficient Storage', 508 =>'Loop Detected', 510 =>'Not Extended', 511 =>'Network Authentication Required', );
+private static $deprecatedMethods = array('setDate','getDate','setExpires','getExpires','setLastModified','getLastModified','setProtocolVersion','getProtocolVersion','setStatusCode','getStatusCode','setCharset','getCharset','setPrivate','setPublic','getAge','getMaxAge','setMaxAge','setSharedMaxAge','getTtl','setTtl','setClientTtl','getEtag','setEtag','hasVary','getVary','setVary','isInvalid','isSuccessful','isRedirection','isClientError','isOk','isForbidden','isNotFound','isRedirect','isEmpty',
+);
+private static $deprecationsTriggered = array(
+__CLASS__ => true,
+BinaryFileResponse::class => true,
+JsonResponse::class => true,
+RedirectResponse::class => true,
+StreamedResponse::class => true,
+);
 public function __construct($content ='', $status = 200, $headers = array())
 {
 $this->headers = new ResponseHeaderBag($headers);
 $this->setContent($content);
 $this->setStatusCode($status);
 $this->setProtocolVersion('1.0');
+$class = get_class($this);
+if ($this instanceof \PHPUnit_Framework_MockObject_MockObject || $this instanceof \Prophecy\Doubler\DoubleInterface) {
+$class = get_parent_class($class);
+}
+if (isset(self::$deprecationsTriggered[$class])) {
+return;
+}
+self::$deprecationsTriggered[$class] = true;
+foreach (self::$deprecatedMethods as $method) {
+$r = new \ReflectionMethod($class, $method);
+if (__CLASS__ !== $r->getDeclaringClass()->getName()) {
+@trigger_error(sprintf('Extending %s::%s() in %s is deprecated since version 3.2 and won\'t be supported anymore in 4.0 as it will be final.', __CLASS__, $method, $class), E_USER_DEPRECATED);
+}
+}
 }
 public static function create($content ='', $status = 200, $headers = array())
 {
@@ -1441,7 +1476,7 @@ $headers->set('Content-Length', $length);
 if ('HTTP/1.0'!= $request->server->get('SERVER_PROTOCOL')) {
 $this->setProtocolVersion('1.1');
 }
-if ('1.0'== $this->getProtocolVersion() &&'no-cache'== $this->headers->get('Cache-Control')) {
+if ('1.0'== $this->getProtocolVersion() && false !== strpos($this->headers->get('Cache-Control'),'no-cache')) {
 $this->headers->set('pragma','no-cache');
 $this->headers->set('expires', -1);
 }
@@ -1752,7 +1787,7 @@ return $this;
 }
 public function isNotModified(Request $request)
 {
-if (!$request->isMethodSafe()) {
+if (!$request->isMethodCacheable()) {
 return false;
 }
 $notModified = false;
@@ -1969,7 +2004,7 @@ return $output;
 protected function computeCacheControlValue()
 {
 if (!$this->cacheControl && !$this->has('ETag') && !$this->has('Last-Modified') && !$this->has('Expires')) {
-return'no-cache';
+return'no-cache, private';
 }
 if (!$this->cacheControl) {
 return'private, must-revalidate';
@@ -2020,23 +2055,26 @@ public function reset();
 }
 namespace Symfony\Component\DependencyInjection
 {
+use Symfony\Component\DependencyInjection\Exception\EnvNotFoundException;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 use Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
+use Symfony\Component\DependencyInjection\ParameterBag\EnvPlaceholderParameterBag;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 class Container implements ResettableContainerInterface
 {
 protected $parameterBag;
 protected $services = array();
 protected $methodMap = array();
+protected $privates = array();
 protected $aliases = array();
 protected $loading = array();
 private $underscoreMap = array('_'=>'','.'=>'_','\\'=>'_');
+private $envCache = array();
 public function __construct(ParameterBagInterface $parameterBag = null)
 {
-$this->parameterBag = $parameterBag ?: new ParameterBag();
+$this->parameterBag = $parameterBag ?: new EnvPlaceholderParameterBag();
 }
 public function compile()
 {
@@ -2076,6 +2114,14 @@ $this->services[$id] = $service;
 if (null === $service) {
 unset($this->services[$id]);
 }
+if (isset($this->privates[$id])) {
+if (null === $service) {
+@trigger_error(sprintf('Unsetting the "%s" private service is deprecated since Symfony 3.2 and won\'t be supported anymore in Symfony 4.0.', $id), E_USER_DEPRECATED);
+unset($this->privates[$id]);
+} else {
+@trigger_error(sprintf('Setting the "%s" private service is deprecated since Symfony 3.2 and won\'t be supported anymore in Symfony 4.0. A new public service will be created instead.', $id), E_USER_DEPRECATED);
+}
+}
 }
 public function has($id)
 {
@@ -2086,11 +2132,21 @@ if ('service_container'=== $id
 ) {
 return true;
 }
+if (isset($this->privates[$id])) {
+@trigger_error(sprintf('Checking for the existence of the "%s" private service is deprecated since Symfony 3.2 and won\'t be supported anymore in Symfony 4.0.', $id), E_USER_DEPRECATED);
+}
+if (isset($this->methodMap[$id])) {
+return true;
+}
 if (--$i && $id !== $lcId = strtolower($id)) {
 $id = $lcId;
-} else {
-return method_exists($this,'get'.strtr($id, $this->underscoreMap).'Service');
+continue;
 }
+if (!$this->methodMap && !$this instanceof ContainerBuilder && __CLASS__ !== static::class && method_exists($this,'get'.strtr($id, $this->underscoreMap).'Service')) {
+@trigger_error('Generating a dumped container without populating the method map is deprecated since 3.2 and will be unsupported in 4.0. Update your dumper to generate the method map.', E_USER_DEPRECATED);
+return true;
+}
+return false;
 }
 }
 public function get($id, $invalidBehavior = self::EXCEPTION_ON_INVALID_REFERENCE)
@@ -2113,7 +2169,8 @@ $method = $this->methodMap[$id];
 } elseif (--$i && $id !== $lcId = strtolower($id)) {
 $id = $lcId;
 continue;
-} elseif (method_exists($this, $method ='get'.strtr($id, $this->underscoreMap).'Service')) {
+} elseif (!$this->methodMap && !$this instanceof ContainerBuilder && __CLASS__ !== static::class && method_exists($this, $method ='get'.strtr($id, $this->underscoreMap).'Service')) {
+@trigger_error('Generating a dumped container without populating the method map is deprecated since 3.2 and will be unsupported in 4.0. Update your dumper to generate the method map.', E_USER_DEPRECATED);
 } else {
 if (self::EXCEPTION_ON_INVALID_REFERENCE === $invalidBehavior) {
 if (!$id) {
@@ -2129,6 +2186,9 @@ $alternatives[] = $knownId;
 throw new ServiceNotFoundException($id, null, null, $alternatives);
 }
 return;
+}
+if (isset($this->privates[$id])) {
+@trigger_error(sprintf('Requesting the "%s" private service is deprecated since Symfony 3.2 and won\'t be supported anymore in Symfony 4.0.', $id), E_USER_DEPRECATED);
 }
 $this->loading[$id] = true;
 try {
@@ -2160,13 +2220,16 @@ $this->services = array();
 public function getServiceIds()
 {
 $ids = array();
+if (!$this->methodMap && !$this instanceof ContainerBuilder && __CLASS__ !== static::class) {
+@trigger_error('Generating a dumped container without populating the method map is deprecated since 3.2 and will be unsupported in 4.0. Update your dumper to generate the method map.', E_USER_DEPRECATED);
 foreach (get_class_methods($this) as $method) {
 if (preg_match('/^get(.+)Service$/', $method, $match)) {
 $ids[] = self::underscore($match[1]);
 }
 }
+}
 $ids[] ='service_container';
-return array_unique(array_merge($ids, array_keys($this->services)));
+return array_unique(array_merge($ids, array_keys($this->methodMap), array_keys($this->services)));
 }
 public static function camelize($id)
 {
@@ -2175,6 +2238,22 @@ return strtr(ucwords(strtr($id, array('_'=>' ','.'=>'_ ','\\'=>'_ '))), array(' 
 public static function underscore($id)
 {
 return strtolower(preg_replace(array('/([A-Z]+)([A-Z][a-z])/','/([a-z\d])([A-Z])/'), array('\\1_\\2','\\1_\\2'), str_replace('_','.', $id)));
+}
+protected function getEnv($name)
+{
+if (isset($this->envCache[$name]) || array_key_exists($name, $this->envCache)) {
+return $this->envCache[$name];
+}
+if (isset($_ENV[$name])) {
+return $this->envCache[$name] = $_ENV[$name];
+}
+if (false !== $env = getenv($name)) {
+return $this->envCache[$name] = $env;
+}
+if (!$this->hasParameter("env($name)")) {
+throw new EnvNotFoundException($name);
+}
+return $this->envCache[$name] = $this->getParameter("env($name)");
 }
 private function __clone()
 {
@@ -2233,7 +2312,6 @@ use Symfony\Bridge\ProxyManager\LazyProxy\PhpDumper\ProxyDumper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\Loader\IniFileLoader;
@@ -2263,14 +2341,14 @@ protected $booted = false;
 protected $name;
 protected $startTime;
 protected $loadClassCache;
-const VERSION ='3.1.4';
-const VERSION_ID = 30104;
+const VERSION ='3.2.0';
+const VERSION_ID = 30200;
 const MAJOR_VERSION = 3;
-const MINOR_VERSION = 1;
-const RELEASE_VERSION = 4;
+const MINOR_VERSION = 2;
+const RELEASE_VERSION = 0;
 const EXTRA_VERSION ='';
-const END_OF_MAINTENANCE ='01/2017';
-const END_OF_LIFE ='07/2017';
+const END_OF_MAINTENANCE ='07/2017';
+const END_OF_LIFE ='01/2018';
 public function __construct($environment, $debug)
 {
 $this->environment = $environment;
@@ -2431,6 +2509,10 @@ public function setClassCache(array $classes)
 {
 file_put_contents($this->getCacheDir().'/classes.map', sprintf('<?php return %s;', var_export($classes, true)));
 }
+public function setAnnotatedClassCache(array $annotatedClasses)
+{
+file_put_contents($this->getCacheDir().'/annotations.map', sprintf('<?php return %s;', var_export($annotatedClasses, true)));
+}
 public function getStartTime()
 {
 return $this->debug ? $this->startTime : -INF;
@@ -2583,7 +2665,8 @@ $container->getCompilerPassConfig()->setMergePass(new MergeExtensionConfiguratio
 }
 protected function getContainerBuilder()
 {
-$container = new ContainerBuilder(new ParameterBag($this->getKernelParameters()));
+$container = new ContainerBuilder();
+$container->getParameterBag()->add($this->getKernelParameters());
 if (class_exists('ProxyManager\Configuration') && class_exists('Symfony\Bridge\ProxyManager\LazyProxy\Instantiator\RuntimeInstantiator')) {
 $container->setProxyInstantiator(new RuntimeInstantiator());
 }
@@ -2664,52 +2747,7 @@ $this->__construct($environment, $debug);
 }
 }
 }
-namespace Symfony\Component\ClassLoader
-{
-class ApcClassLoader
-{
-private $prefix;
-protected $decorated;
-public function __construct($prefix, $decorated)
-{
-if (!function_exists('apcu_fetch')) {
-throw new \RuntimeException('Unable to use ApcClassLoader as APC is not installed.');
-}
-if (!method_exists($decorated,'findFile')) {
-throw new \InvalidArgumentException('The class finder must implement a "findFile" method.');
-}
-$this->prefix = $prefix;
-$this->decorated = $decorated;
-}
-public function register($prepend = false)
-{
-spl_autoload_register(array($this,'loadClass'), true, $prepend);
-}
-public function unregister()
-{
-spl_autoload_unregister(array($this,'loadClass'));
-}
-public function loadClass($class)
-{
-if ($file = $this->findFile($class)) {
-require $file;
-return true;
-}
-}
-public function findFile($class)
-{
-$file = apcu_fetch($this->prefix.$class, $success);
-if (!$success) {
-apcu_store($this->prefix.$class, $file = $this->decorated->findFile($class) ?: null);
-}
-return $file;
-}
-public function __call($method, $args)
-{
-return call_user_func_array(array($this->decorated, $method), $args);
-}
-}
-}
+namespace {require __DIR__.'/../vendor/symfony/symfony/src/Symfony/Component/ClassLoader/ApcClassLoader.php';}
 namespace Symfony\Component\HttpKernel\Bundle
 {
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -2752,6 +2790,7 @@ use ContainerAwareTrait;
 protected $name;
 protected $extension;
 protected $path;
+private $namespace;
 public function boot()
 {
 }
@@ -2787,8 +2826,10 @@ return $this->extension;
 }
 public function getNamespace()
 {
-$class = get_class($this);
-return substr($class, 0, strrpos($class,'\\'));
+if (null === $this->namespace) {
+$this->parseClassName();
+}
+return $this->namespace;
 }
 public function getPath()
 {
@@ -2803,12 +2844,10 @@ public function getParent()
 }
 final public function getName()
 {
-if (null !== $this->name) {
-return $this->name;
+if (null === $this->name) {
+$this->parseClassName();
 }
-$name = get_class($this);
-$pos = strrpos($name,'\\');
-return $this->name = false === $pos ? $name : substr($name, $pos + 1);
+return $this->name;
 }
 public function registerCommands(Application $application)
 {
@@ -2849,6 +2888,12 @@ protected function createContainerExtension()
 if (class_exists($class = $this->getContainerExtensionClass())) {
 return new $class();
 }
+}
+private function parseClassName()
+{
+$pos = strrpos(static::class,'\\');
+$this->namespace = false === $pos ?'': substr(static::class, 0, $pos);
+$this->name = false === $pos ? static::class : substr(static::class, $pos + 1);
 }
 }
 }
@@ -2891,8 +2936,34 @@ $metadata = $this->getMetaFile();
 if (!is_file($metadata)) {
 return true;
 }
+$metadata = $this->getMetaFile();
+if (!is_file($metadata)) {
+return false;
+}
+$e = null;
+$meta = false;
 $time = filemtime($this->file);
+$signalingException = new \UnexpectedValueException();
+$prevUnserializeHandler = ini_set('unserialize_callback_func','');
+$prevErrorHandler = set_error_handler(function ($type, $msg, $file, $line, $context) use (&$prevErrorHandler, $signalingException) {
+if (E_WARNING === $type &&'Class __PHP_Incomplete_Class has no unserializer'=== $msg) {
+throw $signalingException;
+}
+return $prevErrorHandler ? $prevErrorHandler($type, $msg, $file, $line, $context) : false;
+});
+try {
 $meta = unserialize(file_get_contents($metadata));
+} catch (\Error $e) {
+} catch (\Exception $e) {
+}
+restore_error_handler();
+ini_set('unserialize_callback_func', $prevUnserializeHandler);
+if (null !== $e && $e !== $signalingException) {
+throw $e;
+}
+if (false === $meta) {
+return false;
+}
 foreach ($meta as $resource) {
 foreach ($this->resourceCheckers as $checker) {
 if (!$checker->supports($resource)) {
@@ -2935,10 +3006,12 @@ class ConfigCache extends ResourceCheckerConfigCache
 private $debug;
 public function __construct($file, $debug)
 {
-parent::__construct($file, array(
-new SelfCheckingResourceChecker(),
-));
 $this->debug = (bool) $debug;
+$checkers = array();
+if (true === $this->debug) {
+$checkers = array(new SelfCheckingResourceChecker());
+}
+parent::__construct($file, $checkers);
 }
 public function isFresh()
 {

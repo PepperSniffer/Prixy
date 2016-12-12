@@ -11,7 +11,6 @@
 
 namespace Symfony\Bundle\FrameworkBundle\Tests\DependencyInjection;
 
-use Symfony\Bridge\PhpUnit\ErrorAssert;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\FrameworkExtension;
 use Symfony\Component\Cache\Adapter\ApcuAdapter;
@@ -21,10 +20,14 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\Adapter\ProxyAdapter;
 use Symfony\Component\Cache\Adapter\RedisAdapter;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Loader\ClosureLoader;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\Serializer\Mapping\Factory\CacheClassMetadataFactory;
+use Symfony\Component\Serializer\Mapping\Loader\XmlFileLoader;
+use Symfony\Component\Serializer\Mapping\Loader\YamlFileLoader;
 use Symfony\Component\Serializer\Normalizer\DataUriNormalizer;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Normalizer\JsonSerializableNormalizer;
@@ -115,6 +118,71 @@ abstract class FrameworkExtensionTest extends TestCase
 
         $this->assertFalse($container->hasDefinition('profiler'), '->registerProfilerConfiguration() does not load profiling.xml');
         $this->assertFalse($container->hasDefinition('data_collector.config'), '->registerProfilerConfiguration() does not load collectors.xml');
+    }
+
+    public function testWorkflows()
+    {
+        $container = $this->createContainerFromFile('workflows');
+
+        $this->assertTrue($container->hasDefinition('workflow.article', 'Workflow is registered as a service'));
+        $this->assertTrue($container->hasDefinition('workflow.article.definition', 'Workflow definition is registered as a service'));
+
+        $workflowDefinition = $container->getDefinition('workflow.article.definition');
+
+        $this->assertSame(
+            array(
+                'draft',
+                'wait_for_journalist',
+                'approved_by_journalist',
+                'wait_for_spellchecker',
+                'approved_by_spellchecker',
+                'published',
+            ),
+            $workflowDefinition->getArgument(0),
+            'Places are passed to the workflow definition'
+        );
+        $this->assertSame(array('workflow.definition' => array(array('name' => 'article', 'type' => 'workflow', 'marking_store' => 'multiple_state'))), $workflowDefinition->getTags());
+
+        $this->assertTrue($container->hasDefinition('state_machine.pull_request', 'State machine is registered as a service'));
+        $this->assertTrue($container->hasDefinition('state_machine.pull_request.definition', 'State machine definition is registered as a service'));
+        $this->assertCount(4, $workflowDefinition->getArgument(1));
+        $this->assertSame('draft', $workflowDefinition->getArgument(2));
+
+        $stateMachineDefinition = $container->getDefinition('state_machine.pull_request.definition');
+
+        $this->assertSame(
+            array(
+                'start',
+                'coding',
+                'travis',
+                'review',
+                'merged',
+                'closed',
+            ),
+            $stateMachineDefinition->getArgument(0),
+            'Places are passed to the state machine definition'
+        );
+        $this->assertSame(array('workflow.definition' => array(array('name' => 'pull_request', 'type' => 'state_machine', 'marking_store' => 'single_state'))), $stateMachineDefinition->getTags());
+        $this->assertCount(9, $stateMachineDefinition->getArgument(1));
+        $this->assertSame('start', $stateMachineDefinition->getArgument(2));
+    }
+
+    /**
+     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
+     * @expectedExceptionMessage "type" and "service" cannot be used together.
+     */
+    public function testWorkflowCannotHaveBothTypeAndService()
+    {
+        $this->createContainerFromFile('workflow_with_type_and_service');
+    }
+
+    /**
+     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
+     * @expectedExceptionMessage "arguments" and "service" cannot be used together.
+     */
+    public function testWorkflowCannotHaveBothArgumentsAndService()
+    {
+        $this->createContainerFromFile('workflow_with_arguments_and_service');
     }
 
     public function testRouter()
@@ -329,7 +397,7 @@ abstract class FrameworkExtensionTest extends TestCase
         $this->assertSame('addMethodMapping', $calls[4][0]);
         $this->assertSame(array('loadValidatorMetadata'), $calls[4][1]);
         $this->assertSame('setMetadataCache', $calls[5][0]);
-        $this->assertEquals(array(new Reference('validator.mapping.cache.doctrine.apc')), $calls[5][1]);
+        $this->assertEquals(array(new Reference('validator.mapping.cache.symfony')), $calls[5][1]);
     }
 
     public function testValidationService()
@@ -352,7 +420,7 @@ abstract class FrameworkExtensionTest extends TestCase
     {
         $container = $this->createContainerFromFile('full');
 
-        $this->assertEquals('file%link%format', $container->getParameter('templating.helper.code.file_link_format'));
+        $this->assertEquals('file%link%format', $container->getParameter('debug.file_link_format'));
     }
 
     public function testValidationAnnotations()
@@ -399,11 +467,11 @@ abstract class FrameworkExtensionTest extends TestCase
             // Testing symfony/framework-bundle with deps=high
             $this->assertStringEndsWith('symfony'.DIRECTORY_SEPARATOR.'form/Resources/config/validation.xml', $xmlMappings[0]);
         }
-        $this->assertStringEndsWith('TestBundle'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'validation.xml', $xmlMappings[1]);
+        $this->assertStringEndsWith('TestBundle/Resources/config/validation.xml', $xmlMappings[1]);
 
         $yamlMappings = $calls[4][1][0];
         $this->assertCount(1, $yamlMappings);
-        $this->assertStringEndsWith('TestBundle'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'validation.yml', $yamlMappings[0]);
+        $this->assertStringEndsWith('TestBundle/Resources/config/validation.yml', $yamlMappings[0]);
     }
 
     public function testValidationNoStaticMethod()
@@ -535,8 +603,16 @@ abstract class FrameworkExtensionTest extends TestCase
 
     public function testSerializerCacheActivated()
     {
+        if (!class_exists(CacheClassMetadataFactory::class) || !method_exists(XmlFileLoader::class, 'getMappedClasses') || !method_exists(YamlFileLoader::class, 'getMappedClasses')) {
+            $this->markTestSkipped('The Serializer default cache warmer has been introduced in the Serializer Component version 3.2.');
+        }
+
         $container = $this->createContainerFromFile('serializer_enabled');
+
         $this->assertTrue($container->hasDefinition('serializer.mapping.cache_class_metadata_factory'));
+
+        $cache = $container->getDefinition('serializer.mapping.cache_class_metadata_factory')->getArgument(1);
+        $this->assertEquals(new Reference('serializer.mapping.cache.symfony'), $cache);
     }
 
     public function testSerializerCacheDisabled()
@@ -547,16 +623,17 @@ abstract class FrameworkExtensionTest extends TestCase
 
     /**
      * @group legacy
-     * @requires function Symfony\Bridge\PhpUnit\ErrorAssert::assertDeprecationsAreTriggered
+     * @expectedDeprecation The "framework.serializer.cache" option is deprecated %s.
      */
     public function testDeprecatedSerializerCacheOption()
     {
-        ErrorAssert::assertDeprecationsAreTriggered('The "framework.serializer.cache" option is deprecated', function () {
-            $container = $this->createContainerFromFile('serializer_legacy_cache', array('kernel.debug' => true, 'kernel.container_class' => __CLASS__));
+        $container = $this->createContainerFromFile('serializer_legacy_cache', array('kernel.debug' => true, 'kernel.container_class' => __CLASS__));
 
-            $this->assertFalse($container->hasDefinition('serializer.mapping.cache_class_metadata_factory'));
-            $this->assertEquals(new Reference('foo'), $container->getDefinition('serializer.mapping.class_metadata_factory')->getArgument(1));
-        });
+        $this->assertFalse($container->hasDefinition('serializer.mapping.cache_class_metadata_factory'));
+        $this->assertTrue($container->hasDefinition('serializer.mapping.class_metadata_factory'));
+
+        $cache = $container->getDefinition('serializer.mapping.class_metadata_factory')->getArgument(1);
+        $this->assertEquals(new Reference('foo'), $cache);
     }
 
     public function testAssetHelperWhenAssetsAreEnabled()
@@ -635,6 +712,7 @@ abstract class FrameworkExtensionTest extends TestCase
             'kernel.environment' => 'test',
             'kernel.name' => 'kernel',
             'kernel.root_dir' => __DIR__,
+            'kernel.container_class' => 'testContainer',
         ), $data)));
     }
 
