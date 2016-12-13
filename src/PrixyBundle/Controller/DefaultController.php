@@ -45,7 +45,6 @@ class DefaultController extends Controller
             $certif =  $request->query->get('certif');
 
 
-                        var_dump($certif);
             $formations = $dm->getRepository('PrixyBundle:formation')->findWithParams($nom, $prixMin, $prixMax, $select, $certif);
 
         }
