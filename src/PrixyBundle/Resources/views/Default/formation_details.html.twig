@@ -9,16 +9,22 @@
         <div class="col-sm-8 left_position">
             <div class="objectifs_formation">
                 <h3> OBJECTIFS DE LA FORMATION</h3>
+
+                {% if objectif %}
                 <p> {{ objectif.libelle }} </p>
+                {% else %}
+                <p> Tu n'as pas d'objectif dans la vie, suicide toi !!! </p>
+                {% endif %}
+
             </div>
             <div class="pre_requis">
                 <h3> PRE-REQUIS </h3>
                 <ul>
-                    {% if %}
+                    {% if requires %}
                         {% for formation in requires %}
                             <li>{{ formation.ref }}</li>
-                        {% endblock %}
-                    {% endif %}
+                        {% endfor %}
+                    {% endif %} 
                 </ul>
             </div>
             <div class="programme_details">
@@ -26,11 +32,11 @@
                 <h5> Details formation</h5>
                 <ul>
                     {% for details in details_formation %}
-                        <li>{{ listCompetence.libelle }}</li>
+                        <li>{{ details.titre }}</li>
                         <p>
-                            {% for ligne in ligne_formation %}
-                            {{ details_formation }}
-                            {% endblock %} }}
+                            {% for ligne in details_formation.lignes_formations %}
+                            {{ ligne.libelle}}
+                            {% endfor %} }}
                         </p>
                     {% else %}
                         <li>Pas de details sur la formation</li>
@@ -43,17 +49,17 @@
                 <ul class ="without_style">
                     <li>Durée : {{ formation.duree }}</li>
                     <li>Tarif : {{ formation.tarif }}</li>
-                    <li>Certification:{% for formation in requires %}
-                                         formation.
+                    <li>Certification:{% for cert in formation.certification %}
+                                         {{cert.libelle}}
                                        {% endfor %}
                     </li>
                 </ul>
             </div>
             <div class ="session_formation">
                 <ul class="without_style">
-                    {% for ListDate in  %}
-                        <li> {{ sessionFormation.date }}</li>
-                    {% endfor %}
+                   {# {% for ListDate in formation.session_formation  %}
+                        <li> {{ ListDate.date }}</li>
+                    {% endfor %} #}
                 </ul>
             </div>
         </div>

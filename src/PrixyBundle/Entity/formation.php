@@ -80,7 +80,7 @@ class formation
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="formation", mappedBy="myFriends")
+     * @ORM\ManyToMany(targetEntity="formation", mappedBy="estRequisPour")
      */
     private $requiert;
 
