@@ -34,6 +34,7 @@ class DefaultController extends Controller
         $dm = $this->getDoctrine()->getManager();
         $request = Request::createFromGlobals();
 
+        //$paramsResearch = array();
 
         if(null == $request->query->get('nom') && null == $request->query->get('prixMin') && null == $request->query->get('prixMax') && null == $request->query->get('select') && null == $request->query->get('certif')  ){
             $formations = $dm->getRepository('PrixyBundle:formation')->findAllAlphabetic();
@@ -43,6 +44,7 @@ class DefaultController extends Controller
             $prixMax = $request->query->get('prixMax');
             $select = $request->query->get('select');
             $certif =  $request->query->get('certif');
+
 
 
             $formations = $dm->getRepository('PrixyBundle:formation')->findWithParams($nom, $prixMin, $prixMax, $select, $certif);

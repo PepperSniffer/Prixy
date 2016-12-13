@@ -53,7 +53,7 @@
                                 <span class="formation-date">{% if f.sessionFormation.first %} Sessions disponibles {% endif %}</span>
                         </div>
                         <div class="formation-half col-xs-4 col-sm-4 col-md-4">
-                            <img class="formation-logo" src="media/formation/ps.png"></img>
+                            <img class="formation-logo" src="{{ asset("bundles/prixy/media/formation/"~f.id~".png")}}"></img>
                             <span class="formation-prix">{{ f.tarif }}€</span>
                         </div>
                     </a>
