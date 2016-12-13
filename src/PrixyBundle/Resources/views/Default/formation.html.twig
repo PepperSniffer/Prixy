@@ -36,18 +36,20 @@
 
 
 
-    <!--RESULTATS DE LA RECHERCHE-->
+    {# RESULTATS DE LA RECHERCHE #}
     <div class="" id="resultRecherche">
-
+        {#} DIV des liens vers chaques formations {#}
         {% for f in formations %}
             <div class="col-sm-6 col-md-4">
                 <div class="results">
                     <a href="{{ path('prixy_formation', {'id': f.id}) }}" class="formation-lien">
                         <div class="formation-half col-xs-8 col-sm-8 col-md-8">
                             <h5 class="formation-title">{{ f.ref }}</h5>
-                            {% for certif in f.certification %}
-                                <span class="formation-certif">{{ certif.libelle }}</span>
-                            {% endfor %}
+                                    {% if f.certification.first %}
+                                        <span class="formation-certif">{{ f.certification.first.libelle }}</span><br/>
+                                        <span class="formation-certif">...</span>
+                                    {% endif %}
+
                                 <span class="formation-date">{% if f.sessionFormation.first %} Sessions disponibles {% endif %}</span>
                         </div>
                         <div class="formation-half col-xs-4 col-sm-4 col-md-4">

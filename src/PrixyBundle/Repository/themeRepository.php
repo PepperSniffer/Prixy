@@ -10,4 +10,7 @@ namespace PrixyBundle\Repository;
  */
 class themeRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllAlphabetic(){
+        return $this->findBy(array(), array('libelle'=> 'ASC'));
+    }
 }

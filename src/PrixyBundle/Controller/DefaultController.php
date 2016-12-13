@@ -4,7 +4,7 @@ namespace PrixyBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-//use Symfony\Component\Routing\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 
 class DefaultController extends Controller
@@ -32,10 +32,25 @@ class DefaultController extends Controller
     public function formationsAction()
     {
         $dm = $this->getDoctrine()->getManager();
-        $formations = $dm->getRepository('PrixyBundle:formation')->findAll();
+        $request = Request::createFromGlobals();
+
+
+        if(null == $request->query->get('nom') && null == $request->query->get('prixMin') && null == $request->query->get('prixMax') && null == $request->query->get('select') && null == $request->query->get('certif')  ){
+            $formations = $dm->getRepository('PrixyBundle:formation')->findAllAlphabetic();
+        }else{
+            $nom = $request->query->get('nom');
+            $prixMin = $request->query->get('prixMin');
+            $prixMax = $request->query->get('prixMax');
+            $select = $request->query->get('select');
+            $certif =  $request->query->get('certif');
+
+
+            $formations = $dm->getRepository('PrixyBundle:formation')->findWithParams($nom, $prixMin, $prixMax, $select, $certif);
+
+        }
 
         //get themes for research bar 
-        $themes = $dm->getRepository('PrixyBundle:theme')->findAll();
+        $themes = $dm->getRepository('PrixyBundle:theme')->findAllAlphabetic();
 
 
         return $this->render('PrixyBundle:Default:formation.html.twig',array(
