@@ -13,7 +13,7 @@
                 {% if objectif %}
                 <p> {{ objectif.libelle }} </p>
                 {% else %}
-                <p> Tu n'as pas d'objectif dans la vie, suicide toi !!! </p>
+                <p> Error 404, Objectif not found.  </p>
                 {% endif %}
 
             </div>
@@ -22,8 +22,10 @@
                 <ul>
                     {% if requires %}
                         {% for formation in requires %}
-                            <li>{{ formation.ref }}</li>
+                            <li><a href="{{ path('prixy_formation', {'id': formation.id}) }}" class="formation-lien" title="Cliquez ici pour en savoir plus">{{ formation.ref }} </a></li>
                         {% endfor %}
+                {#     {% else %}
+                    <li> Accessible a tous </li>#}
                     {% endif %} 
                 </ul>
             </div>
@@ -31,12 +33,12 @@
                 <h3> PROGRAMME DETAILE </h3>
                 <h5> Details formation</h5>
                 <ul>
-                    {% for details in details_formation %}
+                    {% for details in detailsformation %}
                         <li>{{ details.titre }}</li>
                         <p>
-                            {% for ligne in details_formation.lignes_formations %}
+                            {% for ligne in details.lignesFormations %}
                             {{ ligne.libelle}}
-                            {% endfor %} }}
+                            {% endfor %} 
                         </p>
                     {% else %}
                         <li>Pas de details sur la formation</li>
@@ -46,20 +48,32 @@
         </div>
         <div class="col-sm-4 right_position">
             <div class="info_forma">
+                <h4>Infos</h4>
                 <ul class ="without_style">
-                    <li>Durée : {{ formation.duree }}</li>
-                    <li>Tarif : {{ formation.tarif }}</li>
-                    <li>Certification:{% for cert in formation.certification %}
-                                         {{cert.libelle}}
-                                       {% endfor %}
+                    <li>Durée : {{ formation.duree }} heures</li>
+                    <li>Tarif : {{ formation.tarif }} €</li>
+                    <li>Certification:
+                    {% for cert in formation.certification %}
+                                         {{cert.libelle}},
+                    {% else %}
+                        Pas de certif
+                    {% endfor %}
+                        
+                    
                     </li>
                 </ul>
             </div>
             <div class ="session_formation">
+                <h4>Sessions de formations</h4>  
                 <ul class="without_style">
-                   {# {% for ListDate in formation.session_formation  %}
-                        <li> {{ ListDate.date }}</li>
-                    {% endfor %} #}
+
+                   {% for session in formation.sessionFormation  %}
+                        <li> {{ session.date|date('d/m/Y') }}</li>
+                    
+                    {% else %}
+                    <li> Pas de sessions prévues pour l'instant...</li>
+
+                    {% endfor %} 
                 </ul>
             </div>
         </div>

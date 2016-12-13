@@ -21,44 +21,61 @@ class __TwigTemplate_1327f3a1adcc99c6a65edef79f477b55d65b57b96d91e401fdf6574aad7
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_ed3d69cdaf96dfaa71cc2b8ce66fae2fdf67096561d6a949ac7d05100c82f10b = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_ed3d69cdaf96dfaa71cc2b8ce66fae2fdf67096561d6a949ac7d05100c82f10b->enter($__internal_ed3d69cdaf96dfaa71cc2b8ce66fae2fdf67096561d6a949ac7d05100c82f10b_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Prixy/Default/formation.html.twig"));
+        $__internal_e4a6aba84c5c6a065a9c58619c4a44d2595450d9f33d771668133b24004d3d06 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_e4a6aba84c5c6a065a9c58619c4a44d2595450d9f33d771668133b24004d3d06->enter($__internal_e4a6aba84c5c6a065a9c58619c4a44d2595450d9f33d771668133b24004d3d06_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Prixy/Default/formation.html.twig"));
 
-        $__internal_466bc66d225153d8d63552863f939fa9f8415a186b6cb848d575c56bf100da56 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_466bc66d225153d8d63552863f939fa9f8415a186b6cb848d575c56bf100da56->enter($__internal_466bc66d225153d8d63552863f939fa9f8415a186b6cb848d575c56bf100da56_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Prixy/Default/formation.html.twig"));
+        $__internal_0663eb1e85e7016711ee331aa894c31180826d0d583484f79dc8e77364479df0 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_0663eb1e85e7016711ee331aa894c31180826d0d583484f79dc8e77364479df0->enter($__internal_0663eb1e85e7016711ee331aa894c31180826d0d583484f79dc8e77364479df0_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Prixy/Default/formation.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_ed3d69cdaf96dfaa71cc2b8ce66fae2fdf67096561d6a949ac7d05100c82f10b->leave($__internal_ed3d69cdaf96dfaa71cc2b8ce66fae2fdf67096561d6a949ac7d05100c82f10b_prof);
+        $__internal_e4a6aba84c5c6a065a9c58619c4a44d2595450d9f33d771668133b24004d3d06->leave($__internal_e4a6aba84c5c6a065a9c58619c4a44d2595450d9f33d771668133b24004d3d06_prof);
 
         
-        $__internal_466bc66d225153d8d63552863f939fa9f8415a186b6cb848d575c56bf100da56->leave($__internal_466bc66d225153d8d63552863f939fa9f8415a186b6cb848d575c56bf100da56_prof);
+        $__internal_0663eb1e85e7016711ee331aa894c31180826d0d583484f79dc8e77364479df0->leave($__internal_0663eb1e85e7016711ee331aa894c31180826d0d583484f79dc8e77364479df0_prof);
 
     }
 
     // line 2
     public function block_content($context, array $blocks = array())
     {
-        $__internal_6d800a5e6c946de773881cc13f975db2ad4b5b93f680d8303dc0cff8e3387eff = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_6d800a5e6c946de773881cc13f975db2ad4b5b93f680d8303dc0cff8e3387eff->enter($__internal_6d800a5e6c946de773881cc13f975db2ad4b5b93f680d8303dc0cff8e3387eff_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "content"));
+        $__internal_860610abb30da6ce4941fcc55f72470c165362587a83fdb1561f37d8c1b545ce = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_860610abb30da6ce4941fcc55f72470c165362587a83fdb1561f37d8c1b545ce->enter($__internal_860610abb30da6ce4941fcc55f72470c165362587a83fdb1561f37d8c1b545ce_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "content"));
 
-        $__internal_4acdb45583cdf1d9fbc4934fdbf2172af9e6351e2b0a8c14185f91a8c1efc3f4 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_4acdb45583cdf1d9fbc4934fdbf2172af9e6351e2b0a8c14185f91a8c1efc3f4->enter($__internal_4acdb45583cdf1d9fbc4934fdbf2172af9e6351e2b0a8c14185f91a8c1efc3f4_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "content"));
+        $__internal_00cd3fa4c37f04dbc24db4b417a32046ab2cc07a50a7b9de5837bd24182ab40a = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_00cd3fa4c37f04dbc24db4b417a32046ab2cc07a50a7b9de5837bd24182ab40a->enter($__internal_00cd3fa4c37f04dbc24db4b417a32046ab2cc07a50a7b9de5837bd24182ab40a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "content"));
 
         // line 3
         echo "    <div id=\"divRecherche\">
         <h4>Paramètres</h4>
 
         <div class=\"row\">
-            <form method=\"GET\">
+            <form method=\"GET\" action=\"";
+        // line 7
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("prixy_formations");
+        echo "\">
                 <fieldset>
                     <div class=\"form-group\">
                         <select name=\"select\" class=\"form-control\" placeholder=\"Thème\">
                             <option disabled selected>Thème de la formation</option>
-                            <option value=\"value1\">Theme 1</option>
-                            <option value=\"value2\">Theme 2</option>
-                            <option value=\"value3\">Theme 3</option>
-                        </select>
+                            ";
+        // line 12
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["themes"]) ? $context["themes"] : $this->getContext($context, "themes")));
+        foreach ($context['_seq'] as $context["_key"] => $context["theme"]) {
+            // line 13
+            echo "                                <option value=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute($context["theme"], "id", array()), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, $this->getAttribute($context["theme"], "libelle", array()), "html", null, true);
+            echo "</option>
+                            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['theme'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 15
+        echo "                        </select>
                     </div>
                     <div class=\"form-group\">
                         <input type=\"text\" name=\"nom\" class=\"form-control\" placeholder=\"Nom de Formation\"></input>
@@ -93,7 +110,10 @@ class __TwigTemplate_1327f3a1adcc99c6a65edef79f477b55d65b57b96d91e401fdf6574aad7
             // line 43
             echo "            <div class=\"col-sm-6 col-md-4\">
                 <div class=\"results\">
-                    <a href=\"formation_detail.php\" class=\"formation-lien\">
+                    <a href=\"";
+            // line 45
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("prixy_formation", array("id" => $this->getAttribute($context["f"], "id", array()))), "html", null, true);
+            echo "\" class=\"formation-lien\">
                         <div class=\"formation-half col-xs-8 col-sm-8 col-md-8\">
                             <h5 class=\"formation-title\">";
             // line 47
@@ -114,25 +134,16 @@ class __TwigTemplate_1327f3a1adcc99c6a65edef79f477b55d65b57b96d91e401fdf6574aad7
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['certif'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
             // line 51
-            echo "                            ";
-            $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable($this->getAttribute($context["f"], "sessionFormation", array()));
-            foreach ($context['_seq'] as $context["_key"] => $context["session"]) {
-                // line 52
-                echo "                                <span class=\"formation-date\">";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["session"], "date", array()), "html", null, true);
-                echo "</span>
-                            ";
+            echo "                                <span class=\"formation-date\">";
+            if ($this->getAttribute($this->getAttribute($context["f"], "sessionFormation", array()), "first", array())) {
+                echo " Sessions disponibles ";
             }
-            $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['session'], $context['_parent'], $context['loop']);
-            $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 54
-            echo "                        </div>
+            echo "</span>
+                        </div>
                         <div class=\"formation-half col-xs-4 col-sm-4 col-md-4\">
                             <img class=\"formation-logo\" src=\"media/formation/ps.png\"></img>
                             <span class=\"formation-prix\">";
-            // line 57
+            // line 55
             echo twig_escape_filter($this->env, $this->getAttribute($context["f"], "tarif", array()), "html", null, true);
             echo "€</span>
                         </div>
@@ -144,15 +155,15 @@ class __TwigTemplate_1327f3a1adcc99c6a65edef79f477b55d65b57b96d91e401fdf6574aad7
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['f'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 63
+        // line 61
         echo "
     </div>
 ";
         
-        $__internal_4acdb45583cdf1d9fbc4934fdbf2172af9e6351e2b0a8c14185f91a8c1efc3f4->leave($__internal_4acdb45583cdf1d9fbc4934fdbf2172af9e6351e2b0a8c14185f91a8c1efc3f4_prof);
+        $__internal_00cd3fa4c37f04dbc24db4b417a32046ab2cc07a50a7b9de5837bd24182ab40a->leave($__internal_00cd3fa4c37f04dbc24db4b417a32046ab2cc07a50a7b9de5837bd24182ab40a_prof);
 
         
-        $__internal_6d800a5e6c946de773881cc13f975db2ad4b5b93f680d8303dc0cff8e3387eff->leave($__internal_6d800a5e6c946de773881cc13f975db2ad4b5b93f680d8303dc0cff8e3387eff_prof);
+        $__internal_860610abb30da6ce4941fcc55f72470c165362587a83fdb1561f37d8c1b545ce->leave($__internal_860610abb30da6ce4941fcc55f72470c165362587a83fdb1561f37d8c1b545ce_prof);
 
     }
 
@@ -168,7 +179,7 @@ class __TwigTemplate_1327f3a1adcc99c6a65edef79f477b55d65b57b96d91e401fdf6574aad7
 
     public function getDebugInfo()
     {
-        return array (  148 => 63,  136 => 57,  131 => 54,  122 => 52,  117 => 51,  108 => 49,  104 => 48,  100 => 47,  94 => 43,  90 => 42,  49 => 3,  40 => 2,  11 => 1,);
+        return array (  159 => 61,  147 => 55,  137 => 51,  128 => 49,  124 => 48,  120 => 47,  115 => 45,  111 => 43,  107 => 42,  78 => 15,  67 => 13,  63 => 12,  55 => 7,  49 => 3,  40 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -187,14 +198,14 @@ class __TwigTemplate_1327f3a1adcc99c6a65edef79f477b55d65b57b96d91e401fdf6574aad7
         <h4>Paramètres</h4>
 
         <div class=\"row\">
-            <form method=\"GET\">
+            <form method=\"GET\" action=\"{{ path('prixy_formations') }}\">
                 <fieldset>
                     <div class=\"form-group\">
                         <select name=\"select\" class=\"form-control\" placeholder=\"Thème\">
                             <option disabled selected>Thème de la formation</option>
-                            <option value=\"value1\">Theme 1</option>
-                            <option value=\"value2\">Theme 2</option>
-                            <option value=\"value3\">Theme 3</option>
+                            {% for theme in themes %}
+                                <option value=\"{{ theme.id }}\">{{ theme.libelle }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class=\"form-group\">
@@ -225,15 +236,13 @@ class __TwigTemplate_1327f3a1adcc99c6a65edef79f477b55d65b57b96d91e401fdf6574aad7
         {% for f in formations %}
             <div class=\"col-sm-6 col-md-4\">
                 <div class=\"results\">
-                    <a href=\"formation_detail.php\" class=\"formation-lien\">
+                    <a href=\"{{ path('prixy_formation', {'id': f.id}) }}\" class=\"formation-lien\">
                         <div class=\"formation-half col-xs-8 col-sm-8 col-md-8\">
                             <h5 class=\"formation-title\">{{ f.ref }}</h5>
                             {% for certif in f.certification %}
                                 <span class=\"formation-certif\">{{ certif.libelle }}</span>
                             {% endfor %}
-                            {% for session in f.sessionFormation %}
-                                <span class=\"formation-date\">{{ session.date }}</span>
-                            {% endfor %}
+                                <span class=\"formation-date\">{% if f.sessionFormation.first %} Sessions disponibles {% endif %}</span>
                         </div>
                         <div class=\"formation-half col-xs-4 col-sm-4 col-md-4\">
                             <img class=\"formation-logo\" src=\"media/formation/ps.png\"></img>

@@ -15,20 +15,20 @@ class __TwigTemplate_7dc07830ab3c318ff003bf3b53e6b53d02cce05187dca5c6f1438368d3b
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_d1eb81d215a6f879ecaab23c6bedf257170b695c536af91f85dd0bc46b6ddc78 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_d1eb81d215a6f879ecaab23c6bedf257170b695c536af91f85dd0bc46b6ddc78->enter($__internal_d1eb81d215a6f879ecaab23c6bedf257170b695c536af91f85dd0bc46b6ddc78_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Framework/Form/hidden_widget.html.php"));
+        $__internal_28fc0f4b396d7cad515dc6fbfeeb9530875969ff3923eb92c06e7abf605333b2 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_28fc0f4b396d7cad515dc6fbfeeb9530875969ff3923eb92c06e7abf605333b2->enter($__internal_28fc0f4b396d7cad515dc6fbfeeb9530875969ff3923eb92c06e7abf605333b2_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Framework/Form/hidden_widget.html.php"));
 
-        $__internal_3230cb627b05316f48288d36a4428048e49e19890edf70d5066acff6c9a71f49 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_3230cb627b05316f48288d36a4428048e49e19890edf70d5066acff6c9a71f49->enter($__internal_3230cb627b05316f48288d36a4428048e49e19890edf70d5066acff6c9a71f49_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Framework/Form/hidden_widget.html.php"));
+        $__internal_a2a64641f00a2c89ca5f77a5d88b16eca817c6b2a259cc0d5018e5b5836577ce = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_a2a64641f00a2c89ca5f77a5d88b16eca817c6b2a259cc0d5018e5b5836577ce->enter($__internal_a2a64641f00a2c89ca5f77a5d88b16eca817c6b2a259cc0d5018e5b5836577ce_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Framework/Form/hidden_widget.html.php"));
 
         // line 1
         echo "<?php echo \$view['form']->block(\$form, 'form_widget_simple', array('type' => isset(\$type) ? \$type : 'hidden')) ?>
 ";
         
-        $__internal_d1eb81d215a6f879ecaab23c6bedf257170b695c536af91f85dd0bc46b6ddc78->leave($__internal_d1eb81d215a6f879ecaab23c6bedf257170b695c536af91f85dd0bc46b6ddc78_prof);
+        $__internal_28fc0f4b396d7cad515dc6fbfeeb9530875969ff3923eb92c06e7abf605333b2->leave($__internal_28fc0f4b396d7cad515dc6fbfeeb9530875969ff3923eb92c06e7abf605333b2_prof);
 
         
-        $__internal_3230cb627b05316f48288d36a4428048e49e19890edf70d5066acff6c9a71f49->leave($__internal_3230cb627b05316f48288d36a4428048e49e19890edf70d5066acff6c9a71f49_prof);
+        $__internal_a2a64641f00a2c89ca5f77a5d88b16eca817c6b2a259cc0d5018e5b5836577ce->leave($__internal_a2a64641f00a2c89ca5f77a5d88b16eca817c6b2a259cc0d5018e5b5836577ce_prof);
 
     }
 

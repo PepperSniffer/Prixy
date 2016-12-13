@@ -55,13 +55,13 @@ class DefaultController extends Controller
         $formation = $dm->getRepository('PrixyBundle:formation')->findOneById($id);
         $session_formation = $formation->getSessionFormation();
         $objectif = $formation->getObjectif();
-        $details_formation = $formation->getDetailsFormation();
+        $detailsformation = $formation->getDetailsFormation();
 
         $requires = $formation->getRequiert();
         return $this->render('PrixyBundle:Default:formation_details.html.twig', array('formation' => $formation,
                                                                                        'session_formation' => $session_formation,
                                                                                         'objectif' => $objectif,
-                                                                                        'details_formation'=> $details_formation,
+                                                                                        'detailsformation'=> $detailsformation,
                                                                                         'requires'=>$requires
                                                                                         ));
     }
