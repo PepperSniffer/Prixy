@@ -321,10 +321,7 @@ div  h3:first-letter{
   color: #003D9F;
   font-size: 1.5em;
 }
-.right_position{
-  margin-top:20px;
 
-}
 .without_style{
   list-style:none;
   margin-left:0;
@@ -375,6 +372,9 @@ div  h3:first-letter{
   #map{
 	display:none;
   }
+  .img_display{
+    display: none;
+  }
 }
 .session_formation{
   margin-top: 30px;
@@ -383,6 +383,10 @@ div  h3:first-letter{
 textarea{
 	resize:none;
 }
+.img_display{
+  width: 65%;
+}
+
 #map{
 	width:100% !important;
 	margin-left:none;

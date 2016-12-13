@@ -30,7 +30,7 @@
                 </ul>
             </div>
             <div class="programme_details">
-                <h3> PROGRAMME DETAILE </h3>
+                <h3> PROGRAMME DETAILLE </h3>
                 <h5> Details formation</h5>
                 <ul>
                     {% for details in detailsformation %}
@@ -47,6 +47,11 @@
             </div>
         </div>
         <div class="col-sm-4 right_position">
+            <div class="image_content">
+
+                <img class="img-responsive img_display" src="{{ asset("bundles/prixy/media/formation/"~formation.id~".png")}}">
+            
+            </div>
             <div class="info_forma">
                 <h4>Infos</h4>
                 <ul class ="without_style">
