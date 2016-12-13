@@ -31,7 +31,17 @@ class DefaultController extends Controller
     */
     public function formationsAction()
     {
-        return $this->render('PrixyBundle:Default:formation.html.twig');
+        $dm = $this->getDoctrine()->getManager();
+        $formations = $dm->getRepository('PrixyBundle:formation')->findAll();
+
+        //get themes for research bar 
+        $themes = $dm->getRepository('PrixyBundle:theme')->findAll();
+
+
+        return $this->render('PrixyBundle:Default:formation.html.twig',array(
+            'formations'=>$formations,
+            'themes'=>$themes
+        ));
     }
 
     /**

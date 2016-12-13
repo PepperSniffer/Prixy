@@ -4,14 +4,14 @@
         <h4>Paramètres</h4>
 
         <div class="row">
-            <form method="GET">
+            <form method="GET" action="{{ path('prixy_formations') }}">
                 <fieldset>
                     <div class="form-group">
                         <select name="select" class="form-control" placeholder="Thème">
                             <option disabled selected>Thème de la formation</option>
-                            <option value="value1">Theme 1</option>
-                            <option value="value2">Theme 2</option>
-                            <option value="value3">Theme 3</option>
+                            {% for theme in themes %}
+                                <option value="{{ theme.id }}">{{ theme.libelle }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="form-group">
@@ -39,86 +39,25 @@
     <!--RESULTATS DE LA RECHERCHE-->
     <div class="" id="resultRecherche">
 
-
-        <div class="col-sm-6 col-md-4">
-            <div class="results">
-                <a href="formation_detail.php" class="formation-lien">
-                    <div class="formation-half col-xs-8 col-sm-8 col-md-8">
-                        <h5 class="formation-title">Titre de la formation</h5>
-                        <span class="formation-certif">Certifié</span>
-                        <span class="formation-date">13/13/2013</span>
-                    </div>
-                    <div class="formation-half col-xs-4 col-sm-4 col-md-4">
-                        <img class="formation-logo" src="media/formation/ps.png"></img>
-                        <span class="formation-prix">666€</span>
-                    </div>
-                </a>
+        {% for f in formations %}
+            <div class="col-sm-6 col-md-4">
+                <div class="results">
+                    <a href="{{ path('prixy_formation', {'id': f.id}) }}" class="formation-lien">
+                        <div class="formation-half col-xs-8 col-sm-8 col-md-8">
+                            <h5 class="formation-title">{{ f.ref }}</h5>
+                            {% for certif in f.certification %}
+                                <span class="formation-certif">{{ certif.libelle }}</span>
+                            {% endfor %}
+                                <span class="formation-date">{% if f.sessionFormation.first %} Sessions disponibles {% endif %}</span>
+                        </div>
+                        <div class="formation-half col-xs-4 col-sm-4 col-md-4">
+                            <img class="formation-logo" src="media/formation/ps.png"></img>
+                            <span class="formation-prix">{{ f.tarif }}€</span>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4">
-            <div class="results">
-                <a href="formation_detail.php" class="formation-lien">
-                    <div class="formation-half col-xs-8 col-sm-8 col-md-8">
-                        <h5 class="formation-title">Titre de la formation</h5>
-                        <span class="formation-certif"></span>
-                        <span class="formation-date">13/13/2013</span>
-                    </div>
-                    <div class="formation-half col-xs-4 col-sm-4 col-md-4">
-                        <img class="formation-logo" src=""></img>
-                        <span class="formation-prix">666€</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="results">
-                <a href="formation_detail.php" class="formation-lien">
-                    <div class="formation-half col-xs-8 col-sm-8 col-md-8">
-                        <h5 class="formation-title">Titre de la formation</h5>
-                        <span class="formation-certif">Certifié</span>
-                        <span class="formation-date">13/13/2013</span>
-                    </div>
-                    <div class="formation-half col-xs-4 col-sm-4 col-md-4">
-                        <img class="formation-logo" src="media/formation/ps.png"></img>
-                        <span class="formation-prix">666€</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="results">
-                <a href="formation_detail.php" class="formation-lien">
-                    <div class="formation-half col-xs-8 col-sm-8 col-md-8">
-                        <h5 class="formation-title">Titre de la formation</h5>
-                        <span class="formation-certif">Certifié</span>
-                        <span class="formation-date">13/13/2013</span>
-                    </div>
-                    <div class="formation-half col-xs-4 col-sm-4 col-md-4">
-                        <img class="formation-logo" src="media/formation/ps.png"></img>
-                        <span class="formation-prix">666€</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="results">
-                <a href="formation_detail.php" class="formation-lien">
-                    <div class="formation-half col-xs-8 col-sm-8 col-md-8">
-                        <h5 class="formation-title">Titre de la formation</h5>
-                        <span class="formation-certif">Certifié</span>
-                        <span class="formation-date">13/13/2013</span>
-                    </div>
-                    <div class="formation-half col-xs-4 col-sm-4 col-md-4">
-                        <img class="formation-logo" src="media/formation/ps.png"></img>
-                        <span class="formation-prix">666€</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-
+        {% endfor %}
 
     </div>
-{#</div>#}
 {% endblock content %}
