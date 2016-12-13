@@ -20,16 +20,18 @@ class formationRepository extends \Doctrine\ORM\EntityRepository
 
         if ($select != null){
             $result->innerJoin('f.theme','t');
+            $result->where('t.id = :tId');
+            $result->setParameter('tId', $select);
+
             if ($certif != null){
                 $result->innerJoin('f.certification', 'c');
                 $result->andWhere('c.id != :null');
                 $result->setParameter('null','null');
                 $andwhere=true;
             }
-            $result->where('t.id = :tId');
-            $result->setParameter('tId', $select);
             $andwhere = true;
         }else{
+
             if ($certif != null){
                 $result->innerJoin('f.certification', 'c');
                 $result->where('c.id != :null');
@@ -39,11 +41,13 @@ class formationRepository extends \Doctrine\ORM\EntityRepository
                 
             }
         }
+
+
         if ($nom != null){
             if ($andwhere){
                 $result->andWhere('f.ref LIKE :ref');
             }else{
-                $result->andWhere('f.ref LIKE :ref');
+                $result->where('f.ref LIKE :ref');
             }
             $result->setParameter('ref','%'.$nom.'%');
             $andwhere = true;
@@ -52,7 +56,7 @@ class formationRepository extends \Doctrine\ORM\EntityRepository
             if ($andwhere){
                 $result->andWhere('f.tarif <= :prixMax');
             }else{
-                $result->andWhere('f.tarif <= :prixMax');
+                $result->where('f.tarif <= :prixMax');
             }
             $result->setParameter('prixMax', $prixMax);
             $andwhere = true;
@@ -61,7 +65,7 @@ class formationRepository extends \Doctrine\ORM\EntityRepository
             if ($andwhere){
                 $result->andWhere('f.tarif >= :prixMin');
             }else{
-                $result->andWhere('f.tarif >= :prixMin');
+                $result->where('f.tarif >= :prixMin');
             }
             $result->setParameter('prixMin', $prixMin);
 

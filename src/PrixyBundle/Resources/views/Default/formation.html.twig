@@ -10,19 +10,19 @@
                         <select name="select" class="form-control" placeholder="Thème">
                             <option disabled selected>Thème de la formation</option>
                             {% for theme in themes %}
-                                <option value="{{ theme.id }}">{{ theme.libelle }}</option>
+                                <option class="optSelect" value="{{ theme.id }}" {% if paramResearch.select == theme.id %} selected {% endif %} >{{ theme.libelle }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="nom" class="form-control" placeholder="Nom de Formation"></input>
+                        <input type="text" name="nom" class="form-control" placeholder="Nom de Formation" value="{% if paramResearch.nom %}{{paramResearch.nom}}{% endif %}" ></input>
                     </div>
                     <div class="form-group form-inline">
-                        <input type="number" name="prixMin" id="prixMin" placeholder="Prix Minimum" class="form-control"></input>
-                        <input type="number" name="prixMax" id="prixMax" placeholder="Prix Maximum" class="form-control"></input>
+                        <input type="number" name="prixMin" id="prixMin" placeholder="Prix Minimum" class="form-control" value="{% if paramResearch.prixMin %}{{paramResearch.prixMin}}{% endif %}"></input>
+                        <input type="number" name="prixMax" id="prixMax" placeholder="Prix Maximum" class="form-control" value="{% if paramResearch.prixMax %}{{paramResearch.prixMax}}{% endif %}"></input>
                     </div>
                     <div class="form-inline">
-                        <input name="certif" id="chkcertif" class="form-control" type="checkbox"><label for="chkcertif">Certification</label>
+                        <input name="certif" id="chkcertif" class="form-control" type="checkbox"{% if paramResearch.certif %} checked {% endif %}><label for="chkcertif">Certification</label>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-default" value="Rechercher">

@@ -34,7 +34,7 @@ class DefaultController extends Controller
         $dm = $this->getDoctrine()->getManager();
         $request = Request::createFromGlobals();
 
-        //$paramsResearch = array();
+        $paramsResearch = array();
 
         if(null == $request->query->get('nom') && null == $request->query->get('prixMin') && null == $request->query->get('prixMax') && null == $request->query->get('select') && null == $request->query->get('certif')  ){
             $formations = $dm->getRepository('PrixyBundle:formation')->findAllAlphabetic();
@@ -45,6 +45,13 @@ class DefaultController extends Controller
             $select = $request->query->get('select');
             $certif =  $request->query->get('certif');
 
+            $paramsResearch += [
+                'nom'=> $nom,
+                'prixMin'=>$prixMin,
+                'prixMax'=>$prixMax,
+                'select'=>$select,
+                'certif'=>$certif
+                ];
 
 
             $formations = $dm->getRepository('PrixyBundle:formation')->findWithParams($nom, $prixMin, $prixMax, $select, $certif);
@@ -57,7 +64,8 @@ class DefaultController extends Controller
 
         return $this->render('PrixyBundle:Default:formation.html.twig',array(
             'formations'=>$formations,
-            'themes'=>$themes
+            'themes'=>$themes,
+            'paramResearch'=>$paramsResearch
         ));
     }
 
