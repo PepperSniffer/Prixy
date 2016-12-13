@@ -10,4 +10,63 @@ namespace PrixyBundle\Repository;
  */
 class formationRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllAlphabetic(){
+        return $this->findBy(array(), array('ref'=> 'ASC'));
+    }
+
+    public function findWithParams($nom=null, $prixMin = null, $prixMax = null, $select = null, $certif=null){
+        $result = $this->createQueryBuilder('f');
+        $andwhere =false;
+
+        if ($select != null){
+            $result->innerJoin('f.theme','t');
+            if ($certif != null){
+                $result->innerJoin('f.certification', 'c');
+                $result->andWhere('c.id != :null');
+                $result->setParameter('null','null');
+                $andwhere=true;
+            }
+            $result->where('t.id = :tId');
+            $result->setParameter('tId', $select);
+            $andwhere = true;
+        }else{
+            if ($certif != null){
+                $result->innerJoin('f.certification', 'c');
+                $result->where('c.id != :null');
+                $result->setParameter('null','null');
+                
+                $andwhere=true;
+                
+            }
+        }
+        if ($nom != null){
+            if ($andwhere){
+                $result->andWhere('f.ref LIKE :ref');
+            }else{
+                $result->andWhere('f.ref LIKE :ref');
+            }
+            $result->setParameter('ref','%'.$nom.'%');
+            $andwhere = true;
+        }
+        if ($prixMax != null){
+            if ($andwhere){
+                $result->andWhere('f.tarif <= :prixMax');
+            }else{
+                $result->andWhere('f.tarif <= :prixMax');
+            }
+            $result->setParameter('prixMax', $prixMax);
+            $andwhere = true;
+        }
+        if ($prixMin != null){
+            if ($andwhere){
+                $result->andWhere('f.tarif >= :prixMin');
+            }else{
+                $result->andWhere('f.tarif >= :prixMin');
+            }
+            $result->setParameter('prixMin', $prixMin);
+
+            $andwhere = true;
+        }
+        return $result->getQuery()->getResult();
+    }
 }
