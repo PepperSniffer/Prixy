@@ -10,7 +10,10 @@
                         <select name="select" class="form-control" placeholder="Thème">
                             <option disabled selected>Thème de la formation</option>
                             {% for theme in themes %}
-                                <option class="optSelect" value="{{ theme.id }}" {% if paramResearch.select == theme.id %} selected {% endif %} >{{ theme.libelle }}</option>
+                                <option class="optSelect" value="{{ theme.id }}" 
+                                {% if paramResearch.select %}
+                                        {% if paramResearch.select == theme.id %} selected {% endif %}
+                                {% endif %} >{{ theme.libelle }}</option>
                             {% endfor %}
                         </select>
                     </div>

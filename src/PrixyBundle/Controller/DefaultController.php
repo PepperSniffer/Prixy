@@ -38,6 +38,14 @@ class DefaultController extends Controller
 
         if(null == $request->query->get('nom') && null == $request->query->get('prixMin') && null == $request->query->get('prixMax') && null == $request->query->get('select') && null == $request->query->get('certif')  ){
             $formations = $dm->getRepository('PrixyBundle:formation')->findAllAlphabetic();
+
+            $paramsResearch += [
+                'nom'=> null,
+                'prixMin'=> null,
+                'prixMax'=> null,
+                'select'=> null,
+                'certif'=> null
+                ];
         }else{
             $nom = $request->query->get('nom');
             $prixMin = $request->query->get('prixMin');
