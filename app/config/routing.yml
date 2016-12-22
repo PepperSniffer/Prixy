@@ -4,3 +4,7 @@ prixy:
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+oc_platform_translation:
+    path:     /traduction/{name}
+    defaults: { _controller: OCPlatformBundle:Advert:translation }
