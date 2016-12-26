@@ -1,10 +1,9 @@
 prixy:
     resource: "@PrixyBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
+    requirements:
+        _locale: fr|en
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
 
-oc_platform_translation:
-    path:     /traduction/{name}
-    defaults: { _controller: OCPlatformBundle:Advert:translation }

@@ -5,32 +5,32 @@
 			<div id="map"></div>
 		</div>
 		<div class="col-md-4">
-			<h4>Raison sociale :</h4><p>Prixy</p>
-			<h4>Adresse :</h4><p>4 RD 502 69560 Saint Romain en Gal</p>
-			<h4>Téléphone :</h4><p>0770019080</p>
+			<h4>{{ 'contact.rs'|trans }} :</h4><p>Prixy</p>
+			<h4>{{ 'contact.adress'|trans }} :</h4><p>4 RD 502 69560 Saint Romain en Gal</p>
+			<h4>{{ 'contact.phone'|trans }} :</h4><p>0770019080</p>
 		</div>
 	</div>
 	<div class="row">
 	<div class="col-md-12"
 		<form style="text-align:center;" id="contact" method="post" action="traitement_formulaire.php">
-		<legend>Vos coordonnées</legend>
+		<legend>{{ 'contact.coordonnee'|trans }}</legend>
 			<div class="form-inline">
 				
-				<input class="form-control" placeholder="Nom" type="text" id="nom" name="nom" tabindex="1" />
-				<input class="form-control" placeholder="E-mail" type="text" id="email" name="email" tabindex="2" />
+				<input class="form-control" placeholder="{{ 'contact.ph.name'|trans }}" type="text" id="nom" name="nom" tabindex="1" />
+				<input class="form-control" placeholder="{{ 'contact.ph.mail'|trans }}" type="text" id="email" name="email" tabindex="2" />
 			</div>
 		
 	 
-		<legend>Votre message :</legend>
+		<legend>{{ 'contact.message'|trans }} :</legend>
 		<div class="form-group">
-			<input type="text" placeholder="Objet" id="objet" class="form-control" name="objet" tabindex="3" />
+			<input type="text" placeholder="{{ 'contact.ph.objet'|trans }}" id="objet" class="form-control" name="objet" tabindex="3" />
 		</div>
 		<div class="form-group">
-			<textarea id="message" name="message" placeholder="Votre texte" class="form-control" tabindex="4" cols="70" rows="15"></textarea>
+			<textarea id="message" name="message" placeholder="{{ 'contact.ph.message'|trans }}" class="form-control" tabindex="4" cols="70" rows="15"></textarea>
 		</div>
 	 
 		<div class="form-group">
-			<input type="submit" class="btn btn-default" name="envoi" value="Envoyer le formulaire" />
+			<input type="submit" class="btn btn-default" name="envoi" value="{{ 'contact.btn.send'|trans }}" />
 		</div>
 		</form>
 	</div>

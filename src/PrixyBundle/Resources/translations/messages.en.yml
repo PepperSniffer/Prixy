@@ -1,0 +1,15 @@
+layout.title1: Home
+layout.title2: Formations
+layout.title3: Contact
+index.title: 'Formation to everyone'
+index.content: 'The company Prixy is a young actor in the schooling market for professionals. It was created at the end of 2013 by two partners, S. Millot, consultant for more than ten years in the industrial schooling sector and C. Joubert, expert school specializing in schooling in information and communication technologies. Located in Lyon, PRIXY is mainly aimed at small and medium-sized companies and local authorities; It assists its clients in the definition and implementation of schooling solutions. In 2015, Prixy has increased the skills of nearly 2,500 employees in the private and public sectors, with a turnover of € 950,000'
+contact.rs: 'Company name'
+contact.adress: Adress
+contact.phone: 'Phone Number'
+contact.coordonnee: 'Your contact details'
+contact.ph.name: Name
+contact.ph.mail: E-mail
+contact.message: 'Your message'
+contact.ph.objet: Subject
+contact.ph.message: 'Your text'
+contact.btn.send: 'Send the message'
