@@ -1,8 +1,10 @@
 prixy:
     resource: "@PrixyBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
-    requirements:
+    options:
         _locale: fr|en
+
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
