@@ -6,6 +6,6 @@ prixy:
 
 
 app:
-    resource: "@AppBundle/Controller/"
+    resource: "@PrixyBundle"
     type:     annotation
 

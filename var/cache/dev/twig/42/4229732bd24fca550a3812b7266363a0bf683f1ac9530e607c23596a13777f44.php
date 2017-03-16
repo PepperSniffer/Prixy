@@ -15,21 +15,21 @@ class __TwigTemplate_5185274dec47fa53b42b6a52dc7d8c92b527410f7518972eb410ba13b8b
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_69a23eca49dcb06149c733979d91a291dcdb49feee0a448cfbb4e2ab77496ef2 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_69a23eca49dcb06149c733979d91a291dcdb49feee0a448cfbb4e2ab77496ef2->enter($__internal_69a23eca49dcb06149c733979d91a291dcdb49feee0a448cfbb4e2ab77496ef2_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "TwigBundle:Exception:exception.json.twig"));
+        $__internal_e76f693ca332ca29e4357ed2de799b806f7d667ce377f8b77480bba2dfdd4046 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_e76f693ca332ca29e4357ed2de799b806f7d667ce377f8b77480bba2dfdd4046->enter($__internal_e76f693ca332ca29e4357ed2de799b806f7d667ce377f8b77480bba2dfdd4046_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "TwigBundle:Exception:exception.json.twig"));
 
-        $__internal_9b513a2046cde427785149b5087c3d4e2b530e4faf7a9cecf97355be6b77a15f = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_9b513a2046cde427785149b5087c3d4e2b530e4faf7a9cecf97355be6b77a15f->enter($__internal_9b513a2046cde427785149b5087c3d4e2b530e4faf7a9cecf97355be6b77a15f_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "TwigBundle:Exception:exception.json.twig"));
+        $__internal_5d6a26728b754f25abcbe9d939de2ae47872436912aa13fae2ffdaf6c9a3cb40 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_5d6a26728b754f25abcbe9d939de2ae47872436912aa13fae2ffdaf6c9a3cb40->enter($__internal_5d6a26728b754f25abcbe9d939de2ae47872436912aa13fae2ffdaf6c9a3cb40_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "TwigBundle:Exception:exception.json.twig"));
 
         // line 1
         echo twig_jsonencode_filter(array("error" => array("code" => (isset($context["status_code"]) ? $context["status_code"] : $this->getContext($context, "status_code")), "message" => (isset($context["status_text"]) ? $context["status_text"] : $this->getContext($context, "status_text")), "exception" => $this->getAttribute((isset($context["exception"]) ? $context["exception"] : $this->getContext($context, "exception")), "toarray", array()))));
         echo "
 ";
         
-        $__internal_69a23eca49dcb06149c733979d91a291dcdb49feee0a448cfbb4e2ab77496ef2->leave($__internal_69a23eca49dcb06149c733979d91a291dcdb49feee0a448cfbb4e2ab77496ef2_prof);
+        $__internal_e76f693ca332ca29e4357ed2de799b806f7d667ce377f8b77480bba2dfdd4046->leave($__internal_e76f693ca332ca29e4357ed2de799b806f7d667ce377f8b77480bba2dfdd4046_prof);
 
         
-        $__internal_9b513a2046cde427785149b5087c3d4e2b530e4faf7a9cecf97355be6b77a15f->leave($__internal_9b513a2046cde427785149b5087c3d4e2b530e4faf7a9cecf97355be6b77a15f_prof);
+        $__internal_5d6a26728b754f25abcbe9d939de2ae47872436912aa13fae2ffdaf6c9a3cb40->leave($__internal_5d6a26728b754f25abcbe9d939de2ae47872436912aa13fae2ffdaf6c9a3cb40_prof);
 
     }
 
